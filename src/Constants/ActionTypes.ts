@@ -8,4 +8,9 @@ export default {
 		ResetReducer: 'App_ResetReducer',
 		SetReducer: 'App_SetReducer'
 	},
+
+	Store : {
+		ResetReducer: 'Store_ResetReducer',
+		SetReducer: 'Store_SetReducer'
+	},
 };
