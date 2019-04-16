@@ -1,21 +1,18 @@
+'use strict';
+
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { AppActions } from '@Store/App/actions'
-
-const AppComponent:React.SFC = ({ children }) => {
-  return (
-    <div>{children}</div>
-  )
-}
+import { AppActions } from '@Store/App/actions';
+import { RootComponent } from '@Components';
 
 class AppContainer extends React.Component {
   render () {
     return (
-      <AppComponent>
+      <RootComponent>
         {this.props.children}
-      </AppComponent>      
+      </RootComponent>      
     );
   }
 }

@@ -38,6 +38,9 @@
 			"@Interfaces/*": [
 				"./src/Interfaces/*"
 			],
+			"@Config": [
+				"./src/Config"
+			],
 			"@Constants": [
 				"./src/Constants"
 			],
