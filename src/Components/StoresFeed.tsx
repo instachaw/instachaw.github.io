@@ -13,8 +13,8 @@ export const StoresFeed:React.SFC = () => {
     <div>
       <Grid>
         <Row>
-          <Col style={{ background: 'yellow' }}>
-            <Heading use="h2" style={{ background: 'orange' }}>See All Stores</Heading>      
+          <Col>
+            <Heading use="h2">See All Stores</Heading>      
           </Col>
         </Row>
       </Grid>
