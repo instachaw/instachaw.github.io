@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface ContextProviderState {
-  isMenuOpen: boolean;
+  isMenuOpen?: boolean;
 }
 
 interface UpdateStateArg {
@@ -14,6 +14,11 @@ interface ContextProviderStore {
   update: (arg: UpdateStateArg) => void;
 }
 
+interface StateObjectArg {
+  [key:string]: any
+}
+
+
 const Context = React.createContext({} as ContextProviderStore); // type assertion on empty object
 
 export class ContextProvider extends React.Component<{}, ContextProviderState> {
@@ -22,11 +27,8 @@ export class ContextProvider extends React.Component<{}, ContextProviderState> {
   };
 
   private update = ({ key, value }: UpdateStateArg) => {
-    type stateObjectType = {
-      [key]: any
-    }
 
-    const stateObject: stateObjectType = { [key]: value};
+    const stateObject:StateObjectArg = { [key]: value};
 
     this.setState(stateObject);
   };

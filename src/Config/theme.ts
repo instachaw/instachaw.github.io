@@ -98,6 +98,7 @@ export const theme = {
     grayscale,
     primary,
   },
+  spacing,
 
   Heading,
   Input
