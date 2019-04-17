@@ -6,13 +6,23 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { AppActions } from '@Store/App/actions';
 import { RootComponent } from '@Components';
+import { ContextProvider } from '@Containers';
 
-class AppContainer extends React.Component {
+type AppContainerProps = {}
+type AppContainerState = {}
+
+class AppContainer extends React.Component<AppContainerProps, AppContainerState> {
+  state = {
+    isMenuOpen: true
+  }
+
   render () {
     return (
-      <RootComponent>
-        {this.props.children}
-      </RootComponent>      
+      <ContextProvider>
+        <RootComponent>
+          {this.props.children}
+        </RootComponent>
+      </ContextProvider>
     );
   }
 }
