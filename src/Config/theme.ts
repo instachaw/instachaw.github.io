@@ -21,10 +21,22 @@ const primary = [
   "#fff2f3",
 ]
 
+const fontSizes = [
+  '8px',
+  '12px',
+  '14px',
+  '16px',
+  '18px',
+  '24px',
+  '32px',
+  '48px',
+]
+
 const spacing = [
   '8px',
   '16px',
   '24px',
+  '32px',
   '48px',
   '64px',
 ]
@@ -33,6 +45,7 @@ const radius = [
   '4px',
   '8px',
   '16px',
+  '32px',
 ]
 
 const Heading = css`
@@ -42,27 +55,27 @@ const Heading = css`
     margin-top: 0;
   }
   h1& {
-    font-size: 48px;
+    font-size: ${fontSizes[fontSizes.length - 1]};
     line-height: 72px;
   }
   h2& {
-    font-size: 32px;
+    font-size: ${fontSizes[fontSizes.length - 2]};
     line-height: 48px;
   }
   h3& {
-    font-size: 24px;
+    font-size: ${fontSizes[fontSizes.length - 3]};
     line-height: 36px;
   }
   h4& {
-    font-size: 18px;
+    font-size: ${fontSizes[fontSizes.length - 4]};
     line-height: 24px;
   }
   h5& {
-    font-size: 16px;
+    font-size: ${fontSizes[fontSizes.length - 5]};
     line-height: 24px;
   }
   h6& {
-    font-size: 14px;
+    font-size: ${fontSizes[fontSizes.length - 6]};
     line-height: 21px;
   }
 `;
@@ -71,6 +84,7 @@ export const Input = css`
   display: block;
   width: 100%;
   padding: 0 ${spacing[1]};
+  font-size: 12px;
   height: 45px;
   border-radius: ${radius[0]};
   &[type="checkbox"],
@@ -98,6 +112,8 @@ export const theme = {
     grayscale,
     primary,
   },
+
+  radius,
   spacing,
 
   Heading,

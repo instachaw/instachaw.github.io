@@ -8,3 +8,4 @@ export { Row } from './Row';
 export { GridContainer as Grid } from './GridContainer';
 export { Navbar } from './Navbar';
 export { StoresFeed } from './StoresFeed';
+export { SearchBar } from './SearchBar';

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Avatar, Toolbar, Input } from "reakit";
+import { Toolbar } from "reakit";
 import { theme } from "@Config";
-import { HamburgerIcon, Icon } from "@Components";
+import { Icon, HamburgerIcon, SearchBar } from "@Components";
 
 type NavbarProps = {
   isMenuOpen: boolean,
@@ -25,7 +25,7 @@ export const Navbar:React.FC<NavbarProps> = (props) => {
         <Icon size={32} name={'instachaw'} fill={brandLightest}/>
       </Toolbar.Content>
       <Toolbar.Content align={'center'}>
-        <Input width={'60vw'} placeholder={'Search...'} /> 
+        <SearchBar /> 
       </Toolbar.Content>
       <Toolbar.Content align="end">
         <Toolbar.Focusable
