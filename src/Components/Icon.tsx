@@ -8,19 +8,31 @@ import { theme } from '@Config';
 
 type BaseProps = {
   name: string,
-  size: number|string,
-  legacy: boolean,
+  size?: number|string,
+  legacy?: boolean,
+  fill?: string
+  theme?: object
 }
 
 const defaultProps = {
   name: 'checkLight',
   size: 24,
-  legacy: true,
+  legacy: false,
+  fill: 'currentColor',
   theme: theme
 }
 
-const Base:React.FC<BaseProps> = ({ name, size, legacy, ...props }):(React.ReactElement<any>) => {
-  const icon = getIconsPath({ name, legacy })
+const Base:React.FC<BaseProps> = ({ name, size, legacy, fill, ...props })
+:(React.ReactElement<any>|null) => {
+  const icon = getIconsPath({ name, legacy: legacy || false })
+
+  if (!icon) {
+    new Error(
+      `No icon exists with the name: '${name}'. Please use another name.`
+    )
+
+    return null;
+  }
 
   return (
     <svg
@@ -28,14 +40,14 @@ const Base:React.FC<BaseProps> = ({ name, size, legacy, ...props }):(React.React
       viewBox={icon.viewBox}
       width={size}
       height={size}
-      fill="currentcolor"
+      fill={fill}
     >
       <path d={icon.path} />
     </svg>
-  )
+  );
 }
 
-const Icon = styled(Base)`
+export const Icon = styled(Base)`
   flex: none;
   ${theme.spacing[0]} ${theme.palette.grayscale[0]};
 `
@@ -43,5 +55,3 @@ const Icon = styled(Base)`
 Icon.displayName = 'Icon'
 
 Icon.defaultProps = defaultProps;
-
-export default Icon

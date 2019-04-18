@@ -1,3 +1,5 @@
+const icons = require('../../src/Data/icons.json');
+
 type iconsType = {
   [icon:string]: any
 }
@@ -6,10 +8,6 @@ type getIconsPathArgs = {
   name: string,
   legacy: boolean
 }
-
-const icons:iconsType = {
-  'home': {}
-};
 
 // Should be removed eventually after v1.0.0
 const aliases:iconsType = {
@@ -45,5 +43,6 @@ export const getIconsPath = ({ name, legacy }: getIconsPathArgs) => {
   if (!legacy) {
     return icons[name] || icons.legacy[name]
   }
+
   return icons.legacy[name] || icons[name] || icons[aliases[name]]
 }

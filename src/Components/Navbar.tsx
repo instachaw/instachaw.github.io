@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Avatar, Toolbar, Input } from "reakit";
 import { theme } from "@Config";
-import { HamburgerIcon } from "@Components";
+import { HamburgerIcon, Icon } from "@Components";
 
 type NavbarProps = {
   isMenuOpen: boolean,
@@ -17,9 +17,13 @@ export const Navbar:React.FC<NavbarProps> = (props) => {
 
   const { palette: { primary } } = theme;
   const brand = primary[3];
+  const brandLightest = primary[6];
 
   return (
     <Toolbar background={brand} gutter={'8px 16px'}>
+      <Toolbar.Content align="start">
+        <Icon size={32} name={'instachaw'} fill={brandLightest}/>
+      </Toolbar.Content>
       <Toolbar.Content align={'center'}>
         <Input width={'60vw'} placeholder={'Search...'} /> 
       </Toolbar.Content>
@@ -27,8 +31,8 @@ export const Navbar:React.FC<NavbarProps> = (props) => {
         <Toolbar.Focusable
           use={HamburgerIcon}
           color={'#fff'}
-          isOpen={isMenuOpen}
           menuClicked={onMenuToggleClick}
+          isOpen={isMenuOpen}
         />
       </Toolbar.Content>
     </Toolbar>

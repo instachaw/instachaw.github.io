@@ -1,5 +1,6 @@
 export { AppBase } from './AppBase';
 export { Column as Col } from './Column';
+export { Icon } from './Icon';
 export { Heading } from './Heading';
 export { HamburgerIcon } from './HamburgerIcon';
 export { RootComponent } from './RootComponent';
