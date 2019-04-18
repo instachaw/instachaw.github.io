@@ -2,22 +2,23 @@ import * as React from "react";
 
 type transformValueTypes = {
   isOpen: boolean,
-  rotate: number
+  rotate?: number
 }
 
 type HamburgerMenuProps = transformValueTypes & {
   menuClicked: () => any,
-  width: number,
-  height: number,
-  strokeWidth: number,
-  color: string,
-  borderRadius: number,
-  animationDuration: number
+  isOpen?: boolean,
+  width?: number,
+  height?: number,
+  strokeWidth?: number,
+  color?: string,
+  borderRadius?: number,
+  animationDuration?: number
 }
 
 const defaultProps = {
   width: 32,
-  height: 24,
+  height: 16,
   isOpen: false,
   strokeWidth: 4,
   animationDuration: 0.4,
@@ -27,30 +28,36 @@ const defaultProps = {
 }
 
 const getTransformValue = (isOpen:any, defaultPos:any, rotate:any, halfHeight:any) => {
-  const height = isOpen ? halfHeight : defaultPos;
+  let height =  isOpen ? halfHeight : defaultPos;
+  height = height || 0;
   const rotationDegree = isOpen ? `${rotate}deg`: '0';
 
   return `translate3d(0,${height},0) rotate(${rotationDegree})`;
 }
 
 export const HamburgerIcon:React.FC<HamburgerMenuProps> = props => {
-  const {
+  let {
     isOpen,
     strokeWidth,
     animationDuration
   } = props
+  const relativePosition:'relative' = 'relative';
+  const absolutePosition:'absolute' = 'absolute';
+
+  strokeWidth = strokeWidth || 4;
+  animationDuration = animationDuration || 0.4;
 
   const width = `${props.width}px`,
     height = `${props.height}px`,
     halfHeight = `${parseInt(height.replace('px', '')) / 2}px`,
-    halfStrokeWidth = `-${strokeWidth / 4}px`;
+    halfStrokeWidth = `-${strokeWidth / 2}px`;
 
   const styles = {
     container: {
       width,
       height,
-      position: 'relative',
-      transform: `rotate(${props.rotate}deg)`
+      transform: `rotate(${props.rotate}deg)`,
+      position: relativePosition
     },
 
     lineBase: {
@@ -62,7 +69,7 @@ export const HamburgerIcon:React.FC<HamburgerMenuProps> = props => {
       transitionDuration: `${animationDuration}s`,
       borderRadius: `${props.borderRadius}px`,
       transformOrigin: 'center',
-      position: 'absolute'
+      position: absolutePosition
     },
 
     firstLine: {
@@ -73,8 +80,8 @@ export const HamburgerIcon:React.FC<HamburgerMenuProps> = props => {
     secondLine: {
       transitionTimingFunction: 'ease-out',
       transitionDuration: `${animationDuration / 4}s`,
-      opacity: isOpen ? '0' : '1',
-      transform: isOpen ? 'translateX(-500px)' : 'translateX(0)',
+      opacity: isOpen ? 0 : 1,
+      transform: isOpen ? 'translateX(500px)' : 'translateX(0)',
       top: halfHeight,
       marginTop: halfStrokeWidth
     },
