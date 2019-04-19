@@ -1,4 +1,5 @@
 export { AppBase } from './AppBase';
+export { Badge } from './Badge';
 export { Column as Col } from './Column';
 export { Icon } from './Icon';
 export { Heading } from './Heading';
@@ -9,3 +10,4 @@ export { GridContainer as Grid } from './GridContainer';
 export { Navbar } from './Navbar';
 export { StoresFeed } from './StoresFeed';
 export { SearchBar } from './SearchBar';
+export { VerificationMark } from './VerificationMark';
