@@ -1,5 +1,6 @@
-import { css } from "reakit";
-import defaultTheme from "reakit-theme-default";
+import { css } from 'reakit';
+import defaultTheme from 'reakit-theme-default';
+import { palette } from 'styled-tools';
 
 const grayscale = [
   "#221a1a",
@@ -20,6 +21,9 @@ const primary = [
   "#ffbfc0",
   "#fff2f3",
 ]
+
+const blue = ['#003452', '#0a4f80', '#2d6da8', '#5c8dff', '#7281cc', '#a3abff', '#ebecff']
+const green = ['#275901', '#2d800f', '#4f9900', '#32db5d', '#00eb95', '#acf2d6', '#ebfff0']
 
 const fontSizes = [
   '8px',
@@ -48,8 +52,16 @@ const radius = [
   '32px',
 ]
 
+const Card = css`
+  background: #fff;
+  width: 100%;
+  border-radius: ${radius[1]};
+  box-shadow: 0px 15px 35px 0px ${palette('shadow', 5)};  
+`;
+
 const Heading = css`
   font-weight: bold;
+  padding: 8px 0;
 
   &:first-child {
     margin-top: 0;
@@ -104,18 +116,32 @@ export const Input = css`
   }
 `;
 
+export const Paragraph = css`
+  font-size: ${fontSizes[2]};
+  color: ${grayscale[1]};
+  line-height: 21px;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+`;
+
 export const theme = {
   ...defaultTheme,
-
   palette: {
     ...defaultTheme.palette,
     grayscale,
     primary,
+    blue,
+    green
   },
 
+  fontSizes,
   radius,
   spacing,
 
+  Card,
   Heading,
-  Input
+  Input,
+  Paragraph
 }
