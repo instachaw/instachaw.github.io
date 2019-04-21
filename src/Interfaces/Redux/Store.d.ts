@@ -2,10 +2,10 @@ import { Props } from 'react';
 
 import {
     IHomePage,
-    IStoresPage
+    IStorePage
 } from '@Interfaces';
 
 export type IStore = {
     home: IHomePage.IStateProps,
-    stores: IStoresPage.IStateProps
+    store: IStorePage.IStateProps
 }

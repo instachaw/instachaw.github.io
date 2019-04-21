@@ -7,10 +7,22 @@ import {
   Grid
 } from '@Components';
 import { theme } from '@Config';
+import { IStorePage } from '@Interfaces/Pages/Store';
 
 import { StoresFeedItem } from './StoresFeedItem';
+import { formatServiceHour } from '@Utilities';
 
-export const StoresFeed:React.SFC = () => {
+type StoresFeedProps = {
+  isFetchingStores?: boolean,
+  stores: IStorePage.IStoreData[]
+};
+
+const defaultProps = {
+  isFetchingStores: false,
+  stores: []
+}
+
+export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores }) => {
   return (
     <Box padding={`${theme.spacing[0]} 0`}>
       <Grid>
@@ -21,29 +33,39 @@ export const StoresFeed:React.SFC = () => {
               margin={`${theme.spacing[1]} 0`}
               color={theme.palette.grayscale[2]}
             >Quick & Delightful.</Heading>
+            {isFetchingStores && 'Fetching Stores...'}
 
-            <Box marginBottom={'8px'}>
-              <StoresFeedItem
-                description={'We offer a wide variety of meals and snacks.'}
-                thumbnailImageSrc={'/static/img/brand-logo.jpg'}
-                title={'Instachaw, Choba'}
-                serviceHours={'8 am - 10 am'}
-                serviceFee={'N300'}
-                isVerified={true}
-              />
-            </Box>
-
-            <StoresFeedItem
-              description={'Our unique menu consists of select popular contemporary and Nigerian offerings.'}
-              thumbnailImageSrc={'/static/img/kilimanjaro-lite.jpg'}
-              title={'Kilimanjaro, Choba'}
-              serviceHours={'8 am - 10 am'}
-              serviceFee={'N300'}
-              isVerified={false}
-            />
+            {stores.length > 0 && (
+            <>
+              {stores.map(({
+                brand,
+                description,
+                id,
+                name,
+                service_fee,
+                open_at,
+                close_at,
+                verified_at
+              }:IStorePage.IStoreData) => 
+                <Box marginBottom={'8px'}>
+                  <StoresFeedItem
+                    description={description}
+                    thumbnailImageSrc={`/static/img/${brand}`}
+                    title={name}
+                    serviceHours={`${formatServiceHour(open_at)} am - ${formatServiceHour(close_at)} pm`}
+                    serviceFee={`N${service_fee}`}
+                    isVerified={verified_at !== null}
+                    key={id}
+                  />
+                </Box>
+                )}
+              </>
+            )}
           </Col>
         </Row>
       </Grid>
     </Box>
   )
 }
+
+StoresFeed.defaultProps = defaultProps;

@@ -32,7 +32,7 @@ export const Navbar:React.FC<NavbarProps> = (props) => {
           use={HamburgerIcon}
           color={'#fff'}
           menuClicked={onMenuToggleClick}
-          isOpen={isMenuOpen}
+          isOpen={isMenuOpen || false}
         />
       </Toolbar.Content>
     </Toolbar>
