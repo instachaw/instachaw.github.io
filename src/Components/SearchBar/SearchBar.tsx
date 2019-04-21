@@ -17,7 +17,7 @@ export const SearchBar:React.FC<SearchBarProps> = (props) => {
   return (
     <label>
       <SearchBarWrapper>
-        <SearchBarInput width={'60vw'} placeholder={'Find all that delights you...'} />
+        <SearchBarInput width={'60vw'} placeholder={'Find food...'} />
         <SearchBarAddon>
           <Icon name="search" fill={'#b8b4ad'} />
         </SearchBarAddon>

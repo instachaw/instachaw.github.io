@@ -3,7 +3,7 @@ import { Box } from "reakit";
 import styled from 'styled-components';
 import { palette } from "styled-tools";
 
-import { Navbar } from '@Components';
+import { DockerBar, Navbar } from '@Components';
 import { Consumer } from '@Containers/ContextProvider';
 
 export const AppBaseElement = styled(Box)`
@@ -12,7 +12,7 @@ export const AppBaseElement = styled(Box)`
   height: 100%;
 `;
 
-export const AppBase:React.FC<{}> = (props, context) => {
+export const AppBase:React.FC<{}> = (props) => {
   const { children } = props;
 
   return (
@@ -21,7 +21,7 @@ export const AppBase:React.FC<{}> = (props, context) => {
       {({ state, update }) => (
         <React.Fragment>
             <Navbar
-              isMenuOpen={state.isMenuOpen}
+              isMenuOpen={state.isMenuOpen || false}
               onMenuToggleClick={() => {
                 update({
                   key: 'isMenuOpen',
@@ -30,6 +30,7 @@ export const AppBase:React.FC<{}> = (props, context) => {
               }}
             />
             {children}
+            <DockerBar />
         </React.Fragment>
       )}
       </Consumer>

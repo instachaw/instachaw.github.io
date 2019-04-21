@@ -8,9 +8,9 @@ const remoteServerUrl = 'http://localhost:3333/api/';
 const target = isInDevelopmentMode ? localServerUrl: remoteServerUrl;
 
 export default devProxy = {
-	'/api': {
-		target,
-		pathRewrite: { '^/api': '/' },
-		changeOrigin: true
-	}
+	// '/api': {
+	// 	target,
+	// 	pathRewrite: { '^/api': '/' },
+	// 	changeOrigin: true
+	// }
 }
