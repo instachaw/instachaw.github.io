@@ -47,7 +47,7 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
                 close_at,
                 verified_at
               }:IStorePage.IStoreData) => 
-                <Box marginBottom={'8px'}>
+                <Box key={id} marginBottom={'8px'}>
                   <StoresFeedItem
                     description={description}
                     thumbnailImageSrc={`/static/img/${brand}`}
@@ -55,7 +55,6 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
                     serviceHours={`${formatServiceHour(open_at)} am - ${formatServiceHour(close_at)} pm`}
                     serviceFee={`N${service_fee}`}
                     isVerified={verified_at !== null}
-                    key={id}
                   />
                 </Box>
                 )}

@@ -7,8 +7,7 @@ import { IAction, IStorePage } from '@Interfaces';
  * INITIAL_STATE
 */
 const INITIAL_STATE: IStorePage.IStateProps = {
-	isFetchingStores: false,
-	stores: []
+	isFetchingStores: false
 };
 
 type IMapPayload = IStorePage.Actions.IMapPayload;

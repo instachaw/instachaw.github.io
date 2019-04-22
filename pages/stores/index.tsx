@@ -31,10 +31,9 @@ export class StoresPage extends React.Component<IStorePage.IProps, IStorePage.IS
 }
 
 const mapStateToProps = (state: IStore) => {
-
   return {
-		isFetchingStores: getIsFetchingStores(state.store),
-		stores: getStores(state.store)
+		isFetchingStores: getIsFetchingStores(state),
+		stores: getStores(state)
   }
 };
 

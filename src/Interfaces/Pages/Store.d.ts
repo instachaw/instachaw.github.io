@@ -2,15 +2,13 @@ import { Props } from 'react';
 import { IStoreData } from '@Interfaces/Redux/Store';
 
 declare module IStorePage {
-	export interface IOwnProps extends Props<{}> {
-		store: IStorePage.IStateProps
-	}
+	export interface IOwnProps extends Props<{}> {}
 
     export interface IState { }
 	
 	export interface IStateProps {
 		isFetchingStores: boolean,
-		stores: IStoreData[],
+		stores?: any
 	}
 	
 	export interface IDispatchProps {

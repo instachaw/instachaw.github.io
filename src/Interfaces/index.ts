@@ -9,3 +9,4 @@ export { IHeading } from '@Interfaces/Components/Heading.d.ts';
 // REDUX INTERFACES
 export { IStore } from '@Interfaces/Redux/Store.d.ts';
 export { IAction } from '@Interfaces/Redux/Action.d.ts';
+export { IEntity } from '@Interfaces/Redux/Entity.d.ts';

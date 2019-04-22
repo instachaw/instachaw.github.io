@@ -13,4 +13,9 @@ export default {
 		ResetReducer: 'Store_ResetReducer',
 		SetReducer: 'Store_SetReducer'
 	},
+
+	Entity : {
+		ResetReducer: 'Entity_ResetReducer',
+		SetReducer: 'Entity_SetReducer'
+	},
 };

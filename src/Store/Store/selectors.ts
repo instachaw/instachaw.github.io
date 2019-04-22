@@ -1,4 +1,15 @@
-import { IStorePage } from '@Interfaces';
+import { denormalize } from 'normalizr';
 
-export const getStores = (state:IStorePage.IStateProps) => state.stores;
-export const getIsFetchingStores = (state:IStorePage.IStateProps):boolean => state.isFetchingStores;
+import { IStore } from '@Interfaces/Redux/Store';
+import { createSelector } from 'reselect';
+import { getEntities } from '@Store/App/selectors'
+import { storeSchema } from '@Store/schema'
+
+export const getStores = createSelector([ getEntities ], (entities:any) => denormalize(
+    Object.keys(entities.stores),
+    [ storeSchema ],
+    entities
+  )
+)
+
+export const getIsFetchingStores = (state:IStore):boolean => state.store.isFetchingStores;
