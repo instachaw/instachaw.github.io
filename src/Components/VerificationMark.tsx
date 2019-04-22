@@ -13,6 +13,7 @@ export const VerificationMark:React.FC<VerificationMarkProps> = () => {
       width={'24px'}
       height={'24px'}
       position={'relative'}
+      data-testid = {'verification-mark'}
     >
       <Box
         position={'absolute'}
