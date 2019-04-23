@@ -21,6 +21,10 @@ module.exports = {
     "tsx",
     "js"
   ],
+  automock: false,
+  setupFiles: [
+    "./setupJest.ts"
+  ],
   moduleNameMapper,
   moduleDirectories: [
     ".",

@@ -24,7 +24,7 @@ function checkStatus (response: { status:number }) {
  * @return {Object<Promise>}
  */
 function errorHandler (dispatch:Dispatch, error:any) {
-  console.log('Sorry, we had an error.');
+  console.log('Sorry, we had an error.', error);
 }
 
 /**
