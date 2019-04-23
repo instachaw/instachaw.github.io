@@ -35,7 +35,7 @@ export const StoresFeedItem:React.FC<StoresFeedItemProps> = ({
   thumbnailImageSrc
 }) => {
   return (
-    <Box>
+    <Box data-testid={'stores-feed-item'}>
       <Card>
         <Flex margin={0} width={'100%'}>
           <StoresFeedItemThumbnail
