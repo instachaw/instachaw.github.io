@@ -28,7 +28,9 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
+    "@types/expect-puppeteer": "^3.3.1",
     "@types/jest": "^24.0.11",
+    "@types/jest-environment-puppeteer": "^4.0.0",
     "@types/next": "^7.0.5",
     "@types/next-redux-wrapper": "^2.0.2",
     "@types/react": "^16.7.17",
@@ -40,10 +42,11 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "fetch-mock": "^7.3.1",
     "jest": "^24.7.1",
     "jest-fetch-mock": "^2.1.2",
+    "jest-puppeteer": "^4.1.1",
     "nodemon": "^1.18.9",
+    "puppeteer": "^1.14.0",
     "react-testing-library": "^6.1.2",
     "redux-devtools-extension": "^2.13.7",
     "ts-jest": "^24.0.2",
