@@ -19,7 +19,8 @@ module.exports = {
   moduleFileExtensions: [
     "ts",
     "tsx",
-    "js"
+    "js",
+    "json"
   ],
   automock: false,
   setupFiles: [

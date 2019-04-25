@@ -32,6 +32,7 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
               use="h3"
               margin={`${theme.spacing[1]} 0`}
               color={theme.palette.grayscale[2]}
+              data-testid={'stores-screen-title'}
             >Quick & Delightful.</Heading>
             {isFetchingStores && 'Fetching Stores...'}
 

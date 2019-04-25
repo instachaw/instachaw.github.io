@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { Provider } from 'react-redux';
-import {render, cleanup} from 'react-testing-library'
+import { render, cleanup, wait } from 'react-testing-library'
 import withRedux from 'next-redux-wrapper';
 
 import StoreEndpoints from '@Store/Store/endpoints'
 import StoresPage from '../../../pages/stores';
 import storeMain from '@Store'
-import { StoresFeed } from '@Components'
 
 let App:any = ({ store }:any) => (
   <Provider store={store}>
@@ -17,11 +16,12 @@ let App:any = ({ store }:any) => (
 App = withRedux(storeMain)(App)
 
 const setup = () => {
-  const { container, debug, queryByTestId } = render(<App />)
+  const { container, debug, queryByTestId, queryAllByTestId } = render(<App />)
 
   return {
     container,
     queryByTestId,
+    queryAllByTestId,
     debug
   }
 }
@@ -47,16 +47,15 @@ describe('Store tests', () => {
     expect(global.fetch.mock.calls.length).toEqual(1)
   })
 
-  test('it should make a request, receive fulfillment and display a list of stores', () => {
+  test('it should make a request, receive fulfillment and display a list of stores on the page', async () => {
     global.fetch.mockResponseOnce(responsePayload)
 
-    StoreEndpoints.fetchStores()
-    .then(res => res.json())
-    .then(res => {
-      const { container, debug, queryByTestId } = render(<StoresFeed stores={res.stores} />)
+    const { queryAllByTestId } = setup();
 
-      expect(queryByTestId('stores-feed-item')).toBeDefined();
+    await wait(() => {
+      expect(queryAllByTestId('stores-feed-item').length).toBeGreaterThan(1);
     });
+
   })
 
   afterEach(cleanup)
