@@ -10,6 +10,7 @@ import { theme } from '@Config';
 import { IStorePage } from '@Interfaces/Pages/Store';
 
 import { StoresFeedItem } from './StoresFeedItem';
+import { StoresFeedItemSkeleton } from './StoresFeedItemAtoms';
 import { formatServiceHour } from '@Utilities';
 
 type StoresFeedProps = {
@@ -34,9 +35,17 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
               color={theme.palette.grayscale[2]}
               data-testid={'stores-screen-title'}
             >Quick & Delightful.</Heading>
-            {isFetchingStores && 'Fetching Stores...'}
+            {isFetchingStores && 
+              <Box>
+                {Array.from('12345').map((item:any, key:number) => (
+                  <Box key={key} marginBottom={theme.spacing[1]}>
+                    <StoresFeedItemSkeleton />
+                  </Box>
+                ))}
+              </Box>
+            }
 
-            {stores.length > 0 && (
+            {(stores.length > 0 && !isFetchingStores) && (
             <>
               {stores.map(({
                 brand,

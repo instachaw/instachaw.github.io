@@ -35,7 +35,8 @@ const DockerIcon:React.FC<{ name: string, label: string, isActive?: boolean }> =
 const DockerBarContainerStyles:React.CSSProperties = {
   position: 'fixed',
   bottom: 0,
-  width: '100%'
+  width: '100%',
+  zIndex: 600
 }
 
 export const DockerBar:React.FC<DockerBarProps> = () => {

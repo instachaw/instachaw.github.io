@@ -4,34 +4,49 @@ import * as React from 'react';
 
 import {
   Box,
+  Card,
   Flex,
   Heading,
   Paragraph
 } from 'reakit';
 
 import { theme } from '@Config';
-import { Badge, VerificationMark } from '@Components';
+import { Badge, VerificationMark, Stencil } from '@Components';
+
+const { spacing } = theme;
 
 type StoresFeedItemThumbnailProps = {
-  src: string,
+  src?: string,
   width: string
 };
 
-export const StoresFeedItemThumbnail:React.FC<StoresFeedItemThumbnailProps> = ({ src, width }) => (
-  <div
-    style={{
-      width,
-      flex: 1,
+export const StoresFeedItemThumbnail:React.FC<StoresFeedItemThumbnailProps> = ({ src, width }) => {
+  let storesFeedThumbnailStyles:React.CSSProperties = {
+    width,
+    flex: 1,
+    borderTopLeftRadius: theme.radius[1],
+    borderBottomLeftRadius: theme.radius[1],
+    position: 'relative',
+    minHeight: '82px',
+    backgroundColor: '#aaa',
+    zIndex: 10
+  }
+
+  if (src) {
+    storesFeedThumbnailStyles = {
+      ...storesFeedThumbnailStyles,
       backgroundImage: `url("${src}")`,
       backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      borderTopLeftRadius: theme.radius[1],
-      borderBottomLeftRadius: theme.radius[1],
-      position: 'relative',
-      zIndex: 10
-    }}
-  />
-)
+      backgroundSize: 'cover',  
+    }
+  }
+
+  return (
+    <div
+      style={storesFeedThumbnailStyles}
+    />
+  )
+}
 
 type StoresFeedItemDescriptionProps = {
   storeTitle: string,
@@ -44,7 +59,7 @@ export const StoresFeedItemDescription:React.FC<StoresFeedItemDescriptionProps> 
   storeTitle,
   storeIsVerified
 }) => (
-  <Box style={{ padding: `0 ${theme.spacing[1]} ${theme.spacing[1]} ${theme.spacing[1]}` }}>
+  <Box style={{ padding: `0 ${spacing[1]} ${spacing[1]} ${spacing[1]}` }}>
     <Flex alignItems={'center'}>
       <Heading
         use="h6"
@@ -57,7 +72,7 @@ export const StoresFeedItemDescription:React.FC<StoresFeedItemDescriptionProps> 
 
     <Paragraph
       fontSize={theme.fontSizes[1]}
-      lineHeight={theme.spacing[1]}
+      lineHeight={spacing[1]}
       color={theme.palette.grayscale[2]}
     >
       {storeDescription}
@@ -77,7 +92,7 @@ export const StoresFeedItemFooter:React.FC<StoresFeedItemFooterProps> = ({
   <Flex
     margin={0}
     width={'100%'}
-    padding={`${theme.spacing[0]} ${theme.spacing[1]}`}
+    padding={`${spacing[0]} ${spacing[1]}`}
     background={theme.palette.grayscale[6]}
     justifyContent={'space-between'}
     alignItems={'center'}
@@ -95,4 +110,30 @@ export const StoresFeedItemFooter:React.FC<StoresFeedItemFooterProps> = ({
       text={storeHours}
     />
   </Flex>
+)
+
+export const StoresFeedItemSkeleton:React.FC = ({}) => (
+  <Box data-testid={'stores-feed-item'}>
+    <Card>
+      <Flex margin={0} width={'100%'}>
+        <StoresFeedItemThumbnail width={'30%'} />
+        <Flex width={'70%'} flexDirection={'column'} alignItems={'center'} padding={`12px`}>
+          <Flex
+            alignItems={'center'}
+            width={'100%'}
+            background={'#fff'}
+            justifyContent={'space-between'}
+            marginBottom={spacing[0]}
+          >
+            <Stencil width={'45%'} />
+            <Stencil width={'24px'} height={'24px'} radius={'100%'} />
+          </Flex>
+          <Box width={'100%'}>
+            <Stencil height={'14px'} width={'70%'} />
+            <Stencil height={'14px'} width={'30%'} />
+          </Box>
+        </Flex>
+      </Flex>
+    </Card>
+  </Box>
 )

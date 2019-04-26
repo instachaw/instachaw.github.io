@@ -8,6 +8,7 @@ export { RootComponent } from './RootComponent';
 export { Row } from './Row';
 export { GridContainer as Grid } from './GridContainer';
 export { Navbar } from './Navbar';
-export { StoresFeed } from './StoresFeed';
 export { SearchBar } from './SearchBar';
+export { StoresFeed } from './StoresFeed';
+export { Stencil } from './Stencil';
 export { VerificationMark } from './VerificationMark';
