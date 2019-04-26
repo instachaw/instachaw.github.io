@@ -4,7 +4,7 @@ jobs:
     environment:
       CC_TEST_REPORTER_ID: 3c410abff2ed90f02dd42efe53bc3496d5fc2e2a812f71a6cfb41b7ee42037ee
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:latest-browsers
     steps:
       - checkout
       - restore_cache: # special step to restore the dependency cache
