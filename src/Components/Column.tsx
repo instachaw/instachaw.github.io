@@ -14,15 +14,7 @@ type ColumnProps = {
 };
 
 export const Column:React.FC<ColumnProps> = (props) => {
-  const {
-    sm,
-    md,
-    lg,
-    xl,
-    gutterWidth,
-    children,
-    style
-  } = props;
+  const { sm, md, lg, xl, gutterWidth, children, style } = props;
 
   const Col = styled(Box)`
     padding-left: ${gutterWidth};
@@ -46,11 +38,7 @@ export const Column:React.FC<ColumnProps> = (props) => {
     }
   `;
 
-  return (
-    <Col style={style}>
-      {children}
-    </Col>
-  )
+  return <Col style={style}>{children}</Col>
 }
 
 Column.defaultProps = {
