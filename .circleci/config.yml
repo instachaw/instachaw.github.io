@@ -16,6 +16,13 @@ jobs:
           name: Start Next.js server
           command: npm run start:dev
           background: true
+      # wait for the server to start responding. We expect Bad Request 400 once it starts listening.
+      # so override the shell and have the last command be the : { null } command to force exit code 0.
+      - run:
+          shell: /bin/sh
+          command: |
+            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:3000/stores
+            :
       - run:
           name: Setup Code Climate test-reporter
           command: |
