@@ -1,5 +1,8 @@
 import * as React from "react";
 
+const relativePosition:'relative' = 'relative';
+const absolutePosition:'absolute' = 'absolute';
+
 type transformValueTypes = {
   isOpen: boolean,
   rotate?: number
@@ -10,10 +13,10 @@ type HamburgerMenuProps = transformValueTypes & {
   isOpen?: boolean,
   width?: number,
   height?: number,
-  strokeWidth?: number,
+  strokeWidth: number,
   color?: string,
-  borderRadius?: number,
-  animationDuration?: number
+  borderRadius: number,
+  animationDuration: number
 }
 
 const defaultProps = {
@@ -35,61 +38,52 @@ const getTransformValue = (isOpen:any, defaultPos:any, rotate:any, halfHeight:an
   return `translate3d(0,${height},0) rotate(${rotationDegree})`;
 }
 
-export const HamburgerIcon:React.FC<HamburgerMenuProps> = props => {
-  let {
-    isOpen,
-    strokeWidth,
-    animationDuration
-  } = props
-  const relativePosition:'relative' = 'relative';
-  const absolutePosition:'absolute' = 'absolute';
+const getLineBase = (
+  animationDuration:number,
+  borderRadius: number,
+  color:string,
+  strokeWidth: number,
+  marginTop: string
+) => {
+  return {
+    display: 'block',
+    height: `${strokeWidth}px`,
+    width: '100%',
+    background: color,
+    transitionTimingFunction: "ease",
+    transitionDuration: `${animationDuration}s`,
+    borderRadius: `${borderRadius}px`,
+    transformOrigin: 'center',
+    position: absolutePosition,
+    marginTop
+  }
+}
 
-  strokeWidth = strokeWidth || 4;
-  animationDuration = animationDuration || 0.4;
+const getMedianLine = (animationDuration: number, isOpen:boolean, offsetTop:string, marginTop: string) => {
+  return {
+    transitionTimingFunction: 'ease-out',
+    transitionDuration: `${animationDuration / 4}s`,
+    opacity: isOpen ? 0 : 1,
+    transform: isOpen ? 'translateX(500px)' : 'translateX(0)',
+    top: offsetTop,
+    marginTop
+  }
+}
+
+export const HamburgerIcon:React.FC<HamburgerMenuProps> = (props) => {
+  let { animationDuration, borderRadius, color, isOpen, strokeWidth } = props
 
   const width = `${props.width}px`,
     height = `${props.height}px`,
-    halfHeight = `${parseInt(height.replace('px', '')) / 2}px`,
+    halfHeight = `${parseInt(height) / 2}px`,
     halfStrokeWidth = `-${strokeWidth / 2}px`;
 
   const styles = {
-    container: {
-      width,
-      height,
-      transform: `rotate(${props.rotate}deg)`,
-      position: relativePosition
-    },
-
-    lineBase: {
-      display: 'block',
-      height: `${strokeWidth}px`,
-      width: '100%',
-      background: props.color,
-      transitionTimingFunction: "ease",
-      transitionDuration: `${animationDuration}s`,
-      borderRadius: `${props.borderRadius}px`,
-      transformOrigin: 'center',
-      position: absolutePosition
-    },
-
-    firstLine: {
-      transform: getTransformValue(isOpen, 0, 45, halfHeight),
-      marginTop: halfStrokeWidth
-    },
-
-    secondLine: {
-      transitionTimingFunction: 'ease-out',
-      transitionDuration: `${animationDuration / 4}s`,
-      opacity: isOpen ? 0 : 1,
-      transform: isOpen ? 'translateX(500px)' : 'translateX(0)',
-      top: halfHeight,
-      marginTop: halfStrokeWidth
-    },
-
-    thirdLine: {
-      transform: getTransformValue(isOpen, height, -45, halfHeight),
-      marginTop: halfStrokeWidth
-    }
+    container: { width, height, transform: `rotate(${props.rotate}deg)`, position: relativePosition },
+    lineBase: getLineBase(animationDuration, borderRadius, color || '#000', strokeWidth, halfStrokeWidth),
+    firstLine: { transform: getTransformValue(isOpen, 0, 45, halfHeight) },
+    secondLine: getMedianLine(animationDuration, isOpen, halfHeight, halfStrokeWidth),
+    thirdLine: {transform: getTransformValue(isOpen, height, -45, halfHeight)}
   };
 
   return (
