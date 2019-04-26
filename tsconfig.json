@@ -16,6 +16,7 @@
 		"preserveConstEnums": true,
 		"removeComments": false,
 		"skipLibCheck": true,
+		"resolveJsonModule": true,
 		"sourceMap": true,
 		"strict": true,
 		"target": "esnext",
@@ -37,6 +38,9 @@
 			],
 			"@Interfaces/*": [
 				"./src/Interfaces/*"
+			],
+			"@Config": [
+				"./src/Config"
 			],
 			"@Constants": [
 				"./src/Constants"

@@ -8,6 +8,7 @@ export default class MyDocument extends Document {
 				<Head>
 					<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 					<meta charSet="utf-8" />
+					<link href="/static/css/reset.css" rel="stylesheet" />
 				</Head>
 				<body>
 					<Main />
