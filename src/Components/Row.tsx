@@ -3,30 +3,20 @@ import styled from 'styled-components';
 import { Flex } from 'reakit';
 
 type RowProps = {
-  gutterWidth?: string,
+  rowGutter?: string,
   style?: React.CSSProperties
 };
 
 export const Row:React.FC<RowProps> = (props) => {
-  const {
-    gutterWidth,
-    children,
-    style
-  } = props;
-
   const RowElement = styled(Flex)`
-    margin-left: -${gutterWidth};
-    margin-right: -${gutterWidth};
+    margin-left: -${props.rowGutter};
+    margin-right: -${props.rowGutter};
     flex-wrap: wrap;
   `;
 
-  return (
-    <RowElement style={style}>
-      {children}
-    </RowElement>
-  )
+  return <RowElement style={props.style}>{props.children}</RowElement>
 }
 
 Row.defaultProps = {
-  gutterWidth: '16px'
+  rowGutter: '16px'
 }
