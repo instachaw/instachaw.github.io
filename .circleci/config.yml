@@ -21,6 +21,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run:
+          name: Start Next.js Server
+          command: npm run start:dev
       - run: # run tests
           name: Run Test and Coverage
           command: |
