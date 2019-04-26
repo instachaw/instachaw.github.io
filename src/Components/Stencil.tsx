@@ -1,6 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Flex } from 'reakit';
+import { theme } from '@Config'
+
+const {
+  palette: { grayscale },
+  spacing
+} = theme;
 
 type StencilProps = {
   radius?: string,
@@ -9,35 +15,24 @@ type StencilProps = {
 };
 
 export const Stencil:React.FC<StencilProps> = (props) => {
-  const {
-    width,
-    height,
-    radius
-  } = props;
+  const { height, width, radius } = props;
+  const stencilStyles = { width, height, marginBottom: `${parseInt(spacing[0]) / 2}px` }
 
   const StencilElement = styled(Flex)`
     animation: progress 1.2s ease-in-out infinite;
-    background-color: #eee;
-    background-image: linear-gradient(90deg, #eee, #f5f5f5, #eee);
+    background-color: ${grayscale[5]};
+    background-image: linear-gradient(90deg, ${grayscale[5]}, ${grayscale[6]}, ${grayscale[5]});
     background-size: 200px 100%;
     background-repeat: no-repeat;
-    border-radius: 4px;
+    border-radius: ${theme.radius[0]};
     display: inline-block;
-    line-height: 16px;
+    line-height: ${spacing[1]};
     height: 100%;
     width: 100%;
     border-radius: ${radius};
   `;
 
-  return (
-    <div style={{
-      width,
-      height,
-      marginBottom: '4px'
-    }}>
-      <StencilElement />
-    </div>
-  );
+  return <div style={stencilStyles}><StencilElement /></div>
 }
 
 Stencil.defaultProps = {
