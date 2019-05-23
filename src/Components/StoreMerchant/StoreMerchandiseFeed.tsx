@@ -8,15 +8,11 @@ import {
   Grid
 } from '@Components';
 import { theme } from '@Config';
-import { IStorePage } from '@Interfaces/Pages/Store';
 
 type StoreMerchandiseFeedProps = {
   /** Displays merchandise loading animation */
   isFetchingMerchandise?: boolean,
 };
-
-/** Pool of characters corresponding to one store item within listings */
-const RANGE_POOL = '12345';
 
 export const StoreMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({ }) => {
   return (
@@ -25,7 +21,6 @@ export const StoreMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({ }) =>
         <Row>
           <Col>
             <Heading
-              use="h3"
               margin={`${theme.space[1]} 0`}
               color={theme.palette.grayscale[2]}
               data-testid={'store-merchandise-screen-title'}
