@@ -16,13 +16,12 @@ type StoreMerchandiseFeedProps = {
 
 export const StoreMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({ }) => {
   return (
-    <Box padding={`${theme.space[0]} 0`}>
+    <Box padding={`${theme.space[1]} 0`}>
       <Grid>
         <Row>
           <Col>
             <Heading
-              margin={`${theme.space[1]} 0`}
-              color={theme.palette.grayscale[2]}
+              color={theme.palette.grayscale[1]}
               data-testid={'store-merchandise-screen-title'}
             >
               Finger Lickin' Good.
