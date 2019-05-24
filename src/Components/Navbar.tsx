@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Flex } from "rebass";
 import { theme } from "@Config";
-import { Icon, HamburgerIcon, SearchBar, Grid, Row, Col } from "@Components";
+import { Icon, HamburgerIcon, SearchBar, Grid } from "@Components";
 
 type NavbarProps = {
   /** Renders the navbar menu */
@@ -17,7 +17,7 @@ type NavbarItemProps = {
 }
 
 const NavbarItem:React.FC<NavbarItemProps> = ({ children, span=2 }) => (
-  <Col
+  <Grid.Col
     sm={span}
     gutterWidth={0}
     style={{
@@ -26,7 +26,7 @@ const NavbarItem:React.FC<NavbarItemProps> = ({ children, span=2 }) => (
     }}
   >
     <Flex>{children}</Flex>
-  </Col>
+  </Grid.Col>
 )
 
 export class Navbar extends React.Component<NavbarProps, NavbarState> {
@@ -42,11 +42,11 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
     return (
       <Box bg={brand} py={1}>
         <Grid>
-          <Row>
+          <Grid.Row>
             <NavbarItem><Icon size={32} name={'instachaw'} fill={brandLightest}/></NavbarItem>
             <NavbarItem span={8}><SearchBar /></NavbarItem>
             <NavbarItem><HamburgerIcon color={brandLightest} /></NavbarItem>
-          </Row>
+          </Grid.Row>
         </Grid>
       </Box>
     )

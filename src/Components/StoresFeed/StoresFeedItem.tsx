@@ -48,7 +48,7 @@ export const StoresFeedItem:React.FC<StoresFeedItemProps> = ({
 }) => {
   return (
     <Box data-testid={'stores-feed-item'}>
-      <Card backgroundColor={'#fff'} boxShadow={theme.shadows[0]} borderRadius={theme.radius[1]}>
+      <Card backgroundColor={'#fff'} boxShadow={theme.shadows[4]} borderRadius={theme.radius[1]}>
         <Flex margin={'0'} width={1}>
           <StoresFeedItemLink
             id={id}

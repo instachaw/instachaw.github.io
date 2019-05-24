@@ -1,17 +1,13 @@
 import * as React from 'react';
 
 import { Box, Heading } from 'rebass';
-import {
-  Col,
-  Row,
-  Grid
-} from '@Components';
+import { Grid } from '@Components';
 import { theme } from '@Config';
 import { IStorePage } from '@Interfaces/Pages/Store';
 
 import { StoresFeedItem } from './StoresFeedItem';
 import { StoresFeedItemSkeleton } from './StoresFeedItemAtoms';
-import { formatServiceHour, getStoreItemPath } from '@Utilities';
+import { formatServiceHour } from '@Utilities';
 
 type StoresFeedProps = {
   /** Displays stores loading animation */
@@ -32,8 +28,8 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
   return (
     <Box padding={`${theme.space[0]} 0`}>
       <Grid>
-        <Row>
-          <Col>
+        <Grid.Row>
+          <Grid.Col>
             <Heading
               margin={`${theme.space[1]} 0`}
               color={theme.palette.grayscale[2]}
@@ -77,8 +73,8 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
                 )}
               </>
             )}
-          </Col>
-        </Row>
+          </Grid.Col>
+        </Grid.Row>
       </Grid>
     </Box>
   )

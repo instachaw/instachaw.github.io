@@ -1,15 +1,20 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { Box } from 'rebass';
+import styled from 'styled-components';
+
+import { Column } from './Column';
+import { Row } from './Row';
 
 type GridContainerProps = {
   /** Width of the adjoining gutter space. */
   gutterWidth?: string,
   /** CSS styles. */
-  style?: React.CSSProperties
+  style?: React.CSSProperties,
+  /** React children */
+  children?: React.ReactNode
 };
 
-export const GridContainer:React.FC<GridContainerProps> = (props) => {
+export const GridContainer = (props:GridContainerProps) => {
   const {
     gutterWidth,
     children,
@@ -29,6 +34,9 @@ export const GridContainer:React.FC<GridContainerProps> = (props) => {
     </GridContainerElement>
   )
 }
+
+GridContainer.Col = Column;
+GridContainer.Row = Row;
 
 GridContainer.defaultProps = {
   gutterWidth: '16px'

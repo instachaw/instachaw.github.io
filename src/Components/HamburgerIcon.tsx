@@ -28,16 +28,6 @@ type HamburgerMenuState = {
   isOpen: boolean
 }
 
-const defaultProps = {
-  width: 24,
-  height: 8,
-  strokeWidth: 2,
-  animationDuration: 6,
-  rotate: 0,
-  borderRadius: 64,
-  color: '#000'
-}
-
 const getTransformValue = (isOpen:any, defaultPos:any, rotate:any, halfHeight:any) => {
   let height =  isOpen ? halfHeight : defaultPos;
   height = height || 0;
@@ -64,10 +54,23 @@ const getLineBase = (
   }
 }
 
+const defaultProps = {
+  width: 24,
+  height: 8,
+  strokeWidth: 2,
+  animationDuration: 6,
+  rotate: 0,
+  borderRadius: 64,
+  color: '#000'
+}
+
+
 export class HamburgerIcon extends React.PureComponent<HamburgerMenuProps, HamburgerMenuState> {
   state = {
     isOpen: false
   }
+
+  static defaultProps = defaultProps;  
 
   constructor(props:HamburgerMenuProps) {
     super(props)

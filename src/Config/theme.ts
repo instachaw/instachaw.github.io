@@ -56,7 +56,7 @@ const Card = styled(Box)`
   background: #fff;
   width: 100%;
   border-radius: ${radius[1]};
-  box-shadow: 0px 15px 35px 0px ${palette('shadow', 5)};  
+  box-shadow: ${(props:any) => props.shadowSize ? shadows[props.shadowSize] : shadows[0]}
 `;
 
 const Heading = styled(Box)`
@@ -127,6 +127,10 @@ export const Paragraph = styled(Box)`
 `;
 
 export const shadows = [
+  `0px 1px 3px 0px ${grayscale[5]}`,
+  `0px 4px 6px 0px ${grayscale[5]}`,
+  `0px 5px 15px 5px ${grayscale[5]}`,
+  `0px 10px 24px 0px ${grayscale[5]}`,
   `0px 15px 35px 0px ${grayscale[5]}`
 ]
 
