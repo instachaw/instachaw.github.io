@@ -18,7 +18,7 @@ export class StoreItemPage extends React.Component<IStorePage.IProps, IStorePage
 				<Head>
 					<title>Deliveries from Kilimanjaro, Choba on Instachaw</title>
 				</Head>
-				<StoreMerchantBrief />
+				<StoreMerchantBrief isLoading={false} />
 				<StoreMerchandiseFeed />
 			</>
 		);

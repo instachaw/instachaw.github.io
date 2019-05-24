@@ -134,7 +134,7 @@ export const StoresFeedItemFooter:React.FC<StoresFeedItemFooterProps> = ({
 )
 
 export const StoresFeedItemSkeleton:React.FC = ({}) => (
-  <Box data-testid={'stores-feed-item'}>
+  <Box>
     <Card>
       <Flex margin={0} width={'100%'}>
         <Stencil
