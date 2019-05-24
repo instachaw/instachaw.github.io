@@ -14,12 +14,8 @@ type StencilProps = {
   /** Height of stencil line */
   height?: string,
   /** Width of stencil line */
-<<<<<<< HEAD
-  width?: string
-=======
   width?: string,
   style?: React.CSSProperties
->>>>>>> 638d1f873439fac52b3f2b390189005f940353df
 };
 
 export const Stencil:React.FC<StencilProps> = (props) => {

@@ -111,5 +111,3 @@ export class HamburgerIcon extends React.PureComponent<HamburgerMenuProps, Hambu
     );  
   }
 }
-
-HamburgerIcon.defaultProps = defaultProps;
