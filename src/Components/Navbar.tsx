@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Toolbar } from "reakit";
+import { Box, Flex } from "rebass";
 import { theme } from "@Config";
-import { Icon, HamburgerIcon, SearchBar } from "@Components";
+import { Icon, HamburgerIcon, SearchBar, Grid, Row, Col } from "@Components";
 
 type NavbarProps = {
   /** Renders the navbar menu */
@@ -10,35 +10,45 @@ type NavbarProps = {
   onMenuToggleClick: () => void
 }
 
-const defaultProps = {
-  isMenuOpen: false
+type NavbarState = {}
+
+type NavbarItemProps = {
+  span?: number;
 }
 
-export const Navbar:React.FC<NavbarProps> = (props) => {
-  const { isMenuOpen, onMenuToggleClick } = props;
+const NavbarItem:React.FC<NavbarItemProps> = ({ children, span=2 }) => (
+  <Col
+    sm={span}
+    gutterWidth={0}
+    style={{
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <Flex>{children}</Flex>
+  </Col>
+)
 
-  const { palette: { primary } } = theme;
-  const brand = primary[3];
-  const brandLightest = primary[6];
+export class Navbar extends React.Component<NavbarProps, NavbarState> {
+  constructor(props:NavbarProps) {
+    super(props)
+  }
+  
+  render() {
+    const { palette: { primary } } = theme;
+    const brand = primary[3];
+    const brandLightest = primary[6];
 
-  return (
-    <Toolbar background={brand} gutter={'8px 16px'}>
-      <Toolbar.Content align="start">
-        <Icon size={32} name={'instachaw'} fill={brandLightest}/>
-      </Toolbar.Content>
-      <Toolbar.Content align={'center'}>
-        <SearchBar /> 
-      </Toolbar.Content>
-      <Toolbar.Content align="end">
-        <Toolbar.Focusable
-          use={HamburgerIcon}
-          color={'#fff'}
-          menuClicked={onMenuToggleClick}
-          isOpen={isMenuOpen || false}
-        />
-      </Toolbar.Content>
-    </Toolbar>
-  )
+    return (
+      <Box bg={brand} py={1}>
+        <Grid>
+          <Row>
+            <NavbarItem><Icon size={32} name={'instachaw'} fill={brandLightest}/></NavbarItem>
+            <NavbarItem span={8}><SearchBar /></NavbarItem>
+            <NavbarItem><HamburgerIcon color={brandLightest} /></NavbarItem>
+          </Row>
+        </Grid>
+      </Box>
+    )
+  }
 }
-
-Navbar.defaultProps = defaultProps;

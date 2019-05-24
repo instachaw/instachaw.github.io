@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Flex } from 'reakit';
+import { Flex } from 'rebass';
 import { theme } from '@Config'
 
 const {
   palette: { grayscale },
-  spacing
+  space
 } = theme;
 
 type StencilProps = {
@@ -14,12 +14,17 @@ type StencilProps = {
   /** Height of stencil line */
   height?: string,
   /** Width of stencil line */
+<<<<<<< HEAD
   width?: string
+=======
+  width?: string,
+  style?: React.CSSProperties
+>>>>>>> 638d1f873439fac52b3f2b390189005f940353df
 };
 
 export const Stencil:React.FC<StencilProps> = (props) => {
-  const { height, width, radius } = props;
-  const stencilStyles = { width, height, marginBottom: `${parseInt(spacing[0]) / 2}px` }
+  const { height, width, radius, style } = props;
+  const stencilStyles = { width, height, marginBottom: `${parseInt(space[0]) / 2}px` }
 
   const StencilElement = styled(Flex)`
     animation: progress 1.2s ease-in-out infinite;
@@ -29,13 +34,13 @@ export const Stencil:React.FC<StencilProps> = (props) => {
     background-repeat: no-repeat;
     border-radius: ${theme.radius[0]};
     display: inline-block;
-    line-height: ${spacing[1]};
+    line-height: ${space[1]};
     height: 100%;
     width: 100%;
     border-radius: ${radius};
   `;
 
-  return <div style={stencilStyles}><StencilElement /></div>
+  return <div style={{ ...stencilStyles, ...style }}><StencilElement /></div>
 }
 
 Stencil.defaultProps = {
