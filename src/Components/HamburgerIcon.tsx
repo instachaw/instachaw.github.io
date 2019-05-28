@@ -50,14 +50,15 @@ const getLineBase = (
     borderRadius: `${borderRadius}px`,
     transformOrigin: 'center',
     position: absolutePosition,
-    marginTop
+    marginTop,
+    transition: `transform 0.5s cubic-bezier(0.04, 0.04, 0.12, 0.96)`
   }
 }
 
 const defaultProps = {
   width: 24,
   height: 8,
-  strokeWidth: 2,
+  strokeWidth: 3,
   animationDuration: 6,
   rotate: 0,
   borderRadius: 64,
@@ -65,7 +66,7 @@ const defaultProps = {
 }
 
 
-export class HamburgerIcon extends React.PureComponent<HamburgerMenuProps, HamburgerMenuState> {
+export class HamburgerIcon extends React.Component<HamburgerMenuProps, HamburgerMenuState> {
   state = {
     isOpen: false
   }

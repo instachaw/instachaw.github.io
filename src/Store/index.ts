@@ -6,9 +6,9 @@ import api from './api';
 
 import Reducers from './reducers';
 
-export default () => {
+export default (initialState = {}) => {
   return createStore(Reducers,
-    {},
+    initialState,
     composeWithDevTools(
       applyMiddleware(
         thunkMiddleware.withExtraArgument(api)

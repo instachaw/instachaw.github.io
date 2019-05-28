@@ -1,4 +1,20 @@
 export { callApi } from './ApiUtils'
 export { computeColumnWidth } from './DomUtils'
-export { formatServiceHour } from './StringUtils'
-export { getIconsPath, getStoreItemPath } from './PathUtils'
+export {
+  getObjectKeysCount,
+  greaterOrEquals
+} from './MiscUtils'
+export {
+  getIconsPath,
+  getStoreItemPath,
+  getStoreProductThumbnailPath,
+  getStoreProductPath,
+  findRoutePathDepth
+} from './PathUtils'
+export {
+  formatServiceHour,
+  extractIdFromSlug,
+  generateRandString,
+  slugify,
+  truncateText
+} from './StringUtils'

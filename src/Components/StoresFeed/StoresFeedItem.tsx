@@ -2,23 +2,16 @@
 
 import * as React from 'react';
 
-import {
-  Box,
-  Card,
-  Flex
-} from 'rebass';
+import { Box } from 'rebass';
 
 import { theme } from '@Config';
-
+import { Link } from '@Components';
+import { StoreDisplayItemCard, StoreDisplayItemThumbnail } from '@Components/StoreDisplayItem';
+import { getStoreItemPath } from '@Utilities'
 import {
   StoresFeedItemDescription,
   StoresFeedItemFooter,
-  StoresFeedItemLink,
-  StoresFeedItemThumbnail
 } from './StoresFeedItemAtoms';
-
-const thumbnailWidth = '25%';
-const contentWidth = `${100 - parseInt(thumbnailWidth)}%`;
 
 type StoresFeedItemProps = {
   /** Description of store */
@@ -47,47 +40,25 @@ export const StoresFeedItem:React.FC<StoresFeedItemProps> = ({
   thumbnailImageSrc
 }) => {
   return (
-    <Box data-testid={'stores-feed-item'}>
-      <Card backgroundColor={'#fff'} boxShadow={theme.shadows[4]} borderRadius={theme.radius[1]}>
-        <Flex margin={'0'} width={1}>
-          <StoresFeedItemLink
-            id={id}
-            name={title}
-            style={{
-              width: thumbnailWidth,
-              display: 'flex',
-              backgroundColor: theme.palette.grayscale[4]
-            }}
-          >
-            <StoresFeedItemThumbnail
-              width={'100%'}
-              src={thumbnailImageSrc}
-            />
-          </StoresFeedItemLink>
-
-          <Box width={contentWidth}>
-            <StoresFeedItemDescription
-              storeDescription={description}
-              storeTitle={
-                <StoresFeedItemLink
-                  id={id}
-                  name={title}
-                  style={{
-                    textDecoration: 'none',
-                    color: theme.palette.grayscale[1]
-                  }}
-                >{title}</StoresFeedItemLink>
-              }
-              storeIsVerified={isVerified}
-            />
-
-            <StoresFeedItemFooter
-              storeHours={serviceHours}
-              storeServiceFee={serviceFee}
-            />
-          </Box>
-        </Flex>
-      </Card>
+    <Box data-testid={'stores-feed-item'} mb={1}>
+      <StoreDisplayItemCard
+        alias={getStoreItemPath(id, title)}
+        href={`/store?slug=store-${id}`}
+        headingProps={{
+          pl: 1
+        }}
+        thumbnailSrc={thumbnailImageSrc}
+        title={title}
+      >
+        <StoresFeedItemDescription
+          storeDescription={description}
+          storeIsVerified={isVerified}
+        />
+        <StoresFeedItemFooter
+          storeHours={serviceHours}
+          storeServiceFee={serviceFee}
+        />
+      </StoreDisplayItemCard>
     </Box>
   )
 }

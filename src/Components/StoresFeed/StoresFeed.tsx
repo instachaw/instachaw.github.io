@@ -7,7 +7,8 @@ import { IStorePage } from '@Interfaces/Pages/Store';
 
 import { StoresFeedItem } from './StoresFeedItem';
 import { StoresFeedItemSkeleton } from './StoresFeedItemAtoms';
-import { formatServiceHour } from '@Utilities';
+import { formatServiceHour, generateRandString } from '@Utilities';
+import { StoresSkeletonList, StoresList } from '@Generics';
 
 type StoresFeedProps = {
   /** Displays stores loading animation */
@@ -20,9 +21,6 @@ const defaultProps = {
   isFetchingStores: false,
   stores: []
 }
-
-/** Pool of characters corresponding to one store item within listings */
-const RANGE_POOL = '12345';
 
 export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores }) => {
   return (
@@ -39,17 +37,21 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
             </Heading>
             {isFetchingStores && 
               <Box>
-                {Array.from(RANGE_POOL).map((poolPick:string) => (
-                  <Box key={poolPick} marginBottom={theme.space[1]}>
-                    <StoresFeedItemSkeleton />
-                  </Box>
-                ))}
+                <StoresSkeletonList
+                  items={generateRandString(5).split('')}
+                  itemRenderer={(poolPick:any, key:number) => (
+                    <Box key={key} marginBottom={theme.space[1]}>
+                      <StoresFeedItemSkeleton />
+                    </Box>
+                  )}
+                />
               </Box>
             }
 
             {(stores.length > 0 && !isFetchingStores) && (
-            <>
-              {stores.map(({
+            <StoresList
+              items={stores}
+              itemRenderer={({
                 brand,
                 description,
                 id,
@@ -70,8 +72,8 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
                     isVerified={verified_at !== null}
                   />
                 </Box>
-                )}
-              </>
+              }
+            />
             )}
           </Grid.Col>
         </Grid.Row>

@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 
 import { getIconsPath } from '@Utilities'
@@ -16,6 +16,7 @@ type BaseProps = {
   /** Icon fill color */
   fill?: string
   theme?: object
+  style?: React.CSSProperties
 }
 
 const defaultProps = {

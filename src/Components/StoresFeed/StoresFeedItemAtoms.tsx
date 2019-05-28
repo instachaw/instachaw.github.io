@@ -2,69 +2,19 @@
 
 import * as React from 'react';
 
-import Link from 'next/link';
 import {
   Box,
   Card,
   Flex,
-  Heading,
   Text
 } from 'rebass';
 
 import { theme } from '@Config';
 import { Badge, VerificationMark, Stencil } from '@Components';
-import { getStoreItemPath } from '@Utilities';
 
 const { space } = theme;
 
-type StoresFeedItemThumbnailProps = {
-  /** Item thumbnail source file path */
-  src?: string,
-  /** Thumbnail width */
-  width?: string
-};
-
-type StoresFeedItemLinkProps = {
-  style?: React.CSSProperties,
-  id: number,
-  name: string
-};
-
-export const StoresFeedItemLink:React.FC<StoresFeedItemLinkProps> = ({ children, style, id, name }) => {
-  return (
-    <Link href={getStoreItemPath(id, name)}>
-      <a style={{ display: 'flex', ...style }}>{children}</a>
-    </Link>
-  )
-}
-
-export const StoresFeedItemThumbnail:React.FC<StoresFeedItemThumbnailProps> = ({ src, width }) => {
-  let storesFeedThumbnailStyles:React.CSSProperties = {
-    width,
-    position: 'relative',
-    minHeight: '82px',
-    zIndex: 10
-  }
-
-  if (src) {
-    storesFeedThumbnailStyles = {
-      ...storesFeedThumbnailStyles,
-      backgroundImage: `url("${src}")`,
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',  
-    }
-  }
-
-  return (
-    <div
-      style={storesFeedThumbnailStyles}
-    />
-  )
-}
-
 type StoresFeedItemDescriptionProps = {
-  /** Store name */
-  storeTitle: React.ReactNode,
   /** Description for store */
   storeDescription: string,
   /** Renders <VerificationMark /> component */
@@ -73,19 +23,10 @@ type StoresFeedItemDescriptionProps = {
 
 export const StoresFeedItemDescription:React.FC<StoresFeedItemDescriptionProps> = ({
   storeDescription,
-  storeTitle,
   storeIsVerified,
 }) => (
   <Box width={1} style={{ padding: `0 ${space[1]} ${space[1]} ${space[1]}` }}>
     <Flex alignItems={'center'}>
-      <Heading
-        fontSize={3}
-        flex={1}
-        color={theme.palette.grayscale[1]}
-        mb={space[0]}
-      >
-        {storeTitle}
-      </Heading>
       { storeIsVerified && <VerificationMark /> }
     </Flex>
 
@@ -113,7 +54,7 @@ export const StoresFeedItemFooter:React.FC<StoresFeedItemFooterProps> = ({
   storeServiceFee,
 }) => (
   <Flex
-    width={'97%'}
+    width={1}
     padding={`0 ${space[0]} 0 ${space[2]}`}
     bg={theme.palette.grayscale[6]}
     justifyContent={'space-between'}

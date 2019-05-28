@@ -4,19 +4,23 @@ import { Flex, Heading, Image, Text } from 'rebass';
 import { theme } from '@Config';
 import { Grid } from '@Components'
 
-import { StoresMerchantBriefSkeleton } from './StoreMerchantAtoms'
 
 const { palette: { grayscale }, Card } = theme;
 
 type StoreMerchantBriefProps = {
-  isLoading: boolean
+  /** Store merchant name or title */
+  title: string,
+  /** Store merchant service fee */
+  serviceFee: string,
+  /** Store merchant brand image path */
+  brandSrc: string
 };
 
-const renderMerchantBrief = () => (
+export const StoreMerchantBrief = ({ brandSrc, title, serviceFee }:StoreMerchantBriefProps) => (
   <Card my={1} py={2}>
     <Flex flexDirection={'column'} alignItems={'center'}>
-      <Image width={'64px'} src={'/static/img/kilimanjaro-brand.png'} />
-      <Heading color={grayscale[1]} fontSize={3}>Kilimanjaro, Choba</Heading>
+      <Image width={theme.space[5]} src={brandSrc} />
+      <Heading color={grayscale[1]} fontSize={3}>{title}</Heading>
 
       <Flex mb={1}>
         <Text fontSize={1} color={grayscale[2]} mr={0}>Open from:</Text>
@@ -24,18 +28,18 @@ const renderMerchantBrief = () => (
       </Flex>
       <Flex>
         <Text fontSize={1} color={grayscale[2]} mr={0}>Fast. Low waiting times.</Text>
-        <Text fontSize={1} fontWeight={'bold'} color={grayscale[2]}>N300 only</Text>
+        <Text fontSize={1} fontWeight={'bold'} color={grayscale[2]}>{serviceFee} only</Text>
       </Flex>
     </Flex>
   </Card>
 )
 
-export const StoreMerchantBrief:React.FC<StoreMerchantBriefProps> = ({ isLoading }) => {
+export const StoreMerchantBriefWrapper:React.FC = ({ children }) => {
   return (
     <Grid>
       <Grid.Row>
         <Grid.Col>
-          { isLoading ? <StoresMerchantBriefSkeleton />: renderMerchantBrief() }
+          {children}
         </Grid.Col>
       </Grid.Row>
     </Grid>

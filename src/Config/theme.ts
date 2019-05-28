@@ -1,6 +1,5 @@
 import { Box } from 'rebass';
 import styled from 'styled-components';
-import { palette } from 'styled-tools';
 
 const grayscale = [
   "#221a1a",
@@ -51,6 +50,76 @@ const radius = [
   '16px',
   '32px',
 ]
+
+
+
+const buttonVariants = {
+  base: {
+    margin: '0',
+    borderRadius: radius[2]
+  },
+  primary: {
+    color: primary[primary.length - 1],
+    backgroundColor: primary[3],
+  },
+  primaryMild: {
+    color: primary[0],
+    backgroundColor: primary[5],
+  },
+  success: {
+    color: green[green.length - 1],
+    backgroundColor: green[3],
+  },
+  successMild: {
+    color: green[0],
+    backgroundColor: green[6],
+  },
+  outline: {
+    boxShadow: 'inset 0 0 0 2px'
+  },
+  xs: {
+    padding: `${parseInt(space[0]) / 2}px ${space[1]}`,
+    fontSize: fontSizes[1]
+  },
+  transparent: {
+    backgroundColor: 'transparent',
+  }
+}
+
+const buttons = {
+  ...buttonVariants,
+  primary: { ...buttonVariants.primary, ...buttonVariants.base },
+  primaryXs: {
+    ...buttonVariants.primary,
+    ...buttonVariants.xs,
+    ...buttonVariants.base
+  },
+  primaryMildXs: {
+    ...buttonVariants.primaryMild,
+    ...buttonVariants.xs,
+    ...buttonVariants.base
+  },
+  successXs: {
+    ...buttonVariants.success,
+    ...buttonVariants.xs,
+    ...buttonVariants.base
+  },
+  successMildXs: {
+    ...buttonVariants.successMild,
+    ...buttonVariants.xs,
+    ...buttonVariants.base
+  },
+  outline: {
+    ...buttonVariants.outline,
+    ...buttonVariants.transparent,
+    ...buttonVariants.base
+  },
+  transparentXs: {
+    ...buttonVariants.transparent,
+    ...buttonVariants.xs,
+    ...buttonVariants.base
+  }
+}
 
 const Card = styled(Box)`
   background: #fff;
@@ -142,6 +211,7 @@ export const theme = {
     green
   },
 
+  buttons,
   fontSizes,
   radius,
   space: space,
