@@ -40,7 +40,7 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
     const brandLightest = primary[6];
 
     return (
-      <Box bg={brand} py={1}>
+      <Box bg={brand} style={{ position: 'fixed', zIndex: 400 }} width={1} py={1}>
         <Grid>
           <Grid.Row>
             <NavbarItem><Icon size={32} name={'instachaw'} fill={brandLightest}/></NavbarItem>

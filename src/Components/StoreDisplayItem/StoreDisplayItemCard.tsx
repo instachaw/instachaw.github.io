@@ -42,9 +42,8 @@ export const StoreDisplayItemCard:React.FC<StoreDisplayItemCardProps> = ({
 }) => {
   let thumbnailWidth = `${100 - parseInt(contentWidth)}%`
 
-  if (cardAddonMarkup) {
+  if (cardAddonMarkup)
     thumbnailWidth = `${100 - parseInt(cardAddonWidth) - parseInt(contentWidth)}%`;
-  }
 
   return (
     <Card
@@ -67,9 +66,7 @@ export const StoreDisplayItemCard:React.FC<StoreDisplayItemCardProps> = ({
         {children}
       </Flex>
       {cardAddonMarkup &&         
-        <Flex flexDirection={'column'} width={cardAddonWidth}>
-          { cardAddonMarkup }
-        </Flex>
+        <Flex flexDirection={'column'} width={cardAddonWidth}>{cardAddonMarkup}</Flex>
       }
     </Card>
   )

@@ -1,7 +1,9 @@
+'use strict';
+
 import * as React from 'react';
-import { Box } from "rebass";
+import { Box } from 'rebass';
 import styled from 'styled-components';
-import { palette } from "styled-tools";
+import { palette } from 'styled-tools';
 import { PageTransition } from 'next-page-transitions';
 import { withRouter } from 'next/router';
 
@@ -23,26 +25,21 @@ export class AppBaseComponent extends React.Component<{ router?: any }>{
   componentDidMount() {
     const { router } = this.props;
 
+    // Store the previous route depth (based on the URI scheme)
     this.setState({
       prevPathDepth: findRoutePathDepth(router.asPath)
     })
 
-    router.events.on('routeChangeStart', () => {
+    router.events.on('routeChangeComplete', (route:string) => {
       this.setState({
-        prevPathDepth: findRoutePathDepth(router.asPath)
+        prevPathDepth: findRoutePathDepth(route)
       })
     })
   }
 
-  componentWillUnmount() {
-    this.setState({
-      prevPathDepth: findRoutePathDepth(this.props.router.route)
-    });
-  }
-
   render() {
     const { children, router } = this.props;
-    const transitionDirection = findRoutePathDepth(router.asPath) > this.state.prevPathDepth ? 'left': 'right';
+    const transitionDirection = findRoutePathDepth(router.asPath) >= this.state.prevPathDepth ? 'left': 'right';
 
     return (
       <AppBaseElement>

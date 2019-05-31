@@ -1,5 +1,6 @@
 export { AppBase } from './AppBase';
 export { Badge } from './Badge';
+export { Button } from './Button';
 export { DockerBar } from './DockerBar';
 export { Icon } from './Icon';
 export { HamburgerIcon } from './HamburgerIcon';

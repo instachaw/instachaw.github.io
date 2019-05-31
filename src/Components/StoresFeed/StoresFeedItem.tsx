@@ -4,10 +4,11 @@ import * as React from 'react';
 
 import { Box } from 'rebass';
 
-import { theme } from '@Config';
-import { Link } from '@Components';
-import { StoreDisplayItemCard, StoreDisplayItemThumbnail } from '@Components/StoreDisplayItem';
-import { getStoreItemPath } from '@Utilities'
+import { StoreDisplayItemCard } from '@Components/StoreDisplayItem';
+import {
+  getStoreItemPath,
+  getStoreItemQs
+} from '@Utilities'
 import {
   StoresFeedItemDescription,
   StoresFeedItemFooter,
@@ -43,10 +44,8 @@ export const StoresFeedItem:React.FC<StoresFeedItemProps> = ({
     <Box data-testid={'stores-feed-item'} mb={1}>
       <StoreDisplayItemCard
         alias={getStoreItemPath(id, title)}
-        href={`/store?slug=store-${id}`}
-        headingProps={{
-          pl: 1
-        }}
+        href={getStoreItemQs(id)}
+        headingProps={{ pl: 1 }}
         thumbnailSrc={thumbnailImageSrc}
         title={title}
       >

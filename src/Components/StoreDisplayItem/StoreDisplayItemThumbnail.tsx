@@ -6,7 +6,6 @@ import { theme } from '@Config';
 
 const { radius } = theme;
 
-
 type StoreDisplayItemThumbnailProps = {
   /** Item thumbnail source file path */
   src?: string,

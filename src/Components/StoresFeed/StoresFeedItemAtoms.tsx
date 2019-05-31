@@ -12,7 +12,7 @@ import {
 import { theme } from '@Config';
 import { Badge, VerificationMark, Stencil } from '@Components';
 
-const { space } = theme;
+const { space, palette: {grayscale} } = theme;
 
 type StoresFeedItemDescriptionProps = {
   /** Description for store */
@@ -26,14 +26,12 @@ export const StoresFeedItemDescription:React.FC<StoresFeedItemDescriptionProps> 
   storeIsVerified,
 }) => (
   <Box width={1} style={{ padding: `0 ${space[1]} ${space[1]} ${space[1]}` }}>
-    <Flex alignItems={'center'}>
-      { storeIsVerified && <VerificationMark /> }
-    </Flex>
+    <Flex alignItems={'center'}>{storeIsVerified && <VerificationMark />}</Flex>
 
     <Text
       fontSize={theme.fontSizes[1]}
       lineHeight={space[1]}
-      color={theme.palette.grayscale[2]}
+      color={grayscale[2]}
       paddingLeft={space[0]}
       width={'95%'}
     >
@@ -56,16 +54,16 @@ export const StoresFeedItemFooter:React.FC<StoresFeedItemFooterProps> = ({
   <Flex
     width={1}
     padding={`0 ${space[0]} 0 ${space[2]}`}
-    bg={theme.palette.grayscale[6]}
+    bg={grayscale[6]}
     justifyContent={'space-between'}
     alignItems={'center'}
   >
     <Text
       fontSize={theme.fontSizes[0]}
       fontWeight={600}
-      color={theme.palette.grayscale[3]}
+      color={grayscale[3]}
     >
-      <b style={{ color: theme.palette.grayscale[1] }}>{storeServiceFee}</b> per delivery
+      <b style={{ color: grayscale[1] }}>{storeServiceFee}</b> per delivery
     </Text>
     <Badge
       icon={'timer'}
@@ -81,7 +79,7 @@ export const StoresFeedItemSkeleton:React.FC = ({}) => (
         <Stencil
           width={'30%'}
           style={{
-            marginTop: '8px',
+            marginTop: space[0],
             height: '82px'
           }}
         />
@@ -93,7 +91,7 @@ export const StoresFeedItemSkeleton:React.FC = ({}) => (
             marginBottom={space[0]}
           >
             <Stencil width={'45%'} />
-            <Stencil width={'24px'} height={'24px'} radius={'100%'} />
+            <Stencil width={space[2]} height={space[2]} radius={'100%'} />
           </Flex>
           <Box width={'100%'}>
             <Stencil height={'14px'} width={'70%'} />

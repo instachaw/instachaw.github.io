@@ -1,10 +1,12 @@
+'use strict';
+
 /**
  * Formats a opening time string.
  * 
- * @param {Number} span - Width of a single column.
- * @param {Number} gridSize - Total capacity of columns in the grid.
+ * @param {number} span - Width of a single column.
+ * @param {number} gridSize - Total capacity of columns in the grid.
  * 
- * @returns {String}
+ * @returns {string}
  */
 export function formatServiceHour (time:string) {
   return time.split(':')[0][1]

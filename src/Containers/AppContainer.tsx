@@ -19,9 +19,7 @@ class AppContainer extends React.Component<AppContainerProps, AppContainerState>
   render () {
     return (
       <ContextProvider>
-        <RootComponent>
-          {this.props.children}
-        </RootComponent>
+        <RootComponent>{this.props.children}</RootComponent>
       </ContextProvider>
     );
   }

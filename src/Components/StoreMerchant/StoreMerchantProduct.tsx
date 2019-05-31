@@ -6,18 +6,29 @@ import { Box, Button, Flex, Text } from 'rebass';
 import { theme } from '@Config';
 import { Icon } from '@Components';
 import { StoreDisplayItemCard } from '@Components/StoreDisplayItem';
-import { getStoreProductPath, truncateText } from '@Utilities'
+import {
+  getStoreProductPath,
+  getStoreProductQs,
+  truncateText
+} from '@Utilities'
 import { StoreMerchantProductControls } from './StoreMerchantProductControls'
 
-const { palette: { grayscale } } = theme
+const { palette: { grayscale }, fontSizes } = theme
 
 type StoreMerchantProductProps = {
+  /** Merchant store id */
   storeId: number,
+  /** Merchant store URL string */
   storePath: string,
+  /** Merchant product id */
   productId: number,
+  /** Title of the product */
   productTitle: string,
+  /** Description for the product */
   productDesc?: string,
+  /** Product photo filename */
   photo: string,
+  /** Displays a collapsed section */
   hasCollapsedSection?: boolean
 };
 
@@ -33,13 +44,13 @@ export const StoreMerchantProduct:React.FC<StoreMerchantProductProps> = ({
   return (
     <Box data-testid={'store-merchant-product'} mb={1}>
       <StoreDisplayItemCard
-        href={`/store?slug=store-${storeId}&productId=${productId}`}
+        href={getStoreProductQs(storeId, productId)}
         alias={getStoreProductPath(storePath, productId, productTitle)}
         thumbnailSrc={`${photo}`}
         title={productTitle}
         headingProps={{
-          fontSize: theme.fontSizes[1],
-          color: theme.palette.grayscale[1],
+          fontSize: fontSizes[1],
+          color: grayscale[1],
           pl: 1
         }}
         cardAddonMarkup={<StoreMerchantProductControls />}
@@ -56,6 +67,7 @@ export const StoreMerchantProduct:React.FC<StoreMerchantProductProps> = ({
                 name="chevronDown"
                 style={{
                   transition: "transform 0.5s ease",
+                  // TODO: make this dynamic
                   transform: true ? `rotate(0deg)` : `rotate(180deg)`
                 }}
               />}

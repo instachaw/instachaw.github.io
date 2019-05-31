@@ -16,6 +16,7 @@ export class StoresPage extends React.Component<IStorePage.IProps, IStorePage.IS
 
 	public render(): JSX.Element {
 		const { isFetchingStores, stores } = this.props;
+		
 		return (
 			<>
 				<Head>

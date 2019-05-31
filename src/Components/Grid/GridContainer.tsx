@@ -1,9 +1,13 @@
+'use strict';
+
 import * as React from 'react';
 import { Box } from 'rebass';
 import styled from 'styled-components';
 
 import { Column } from './Column';
 import { Row } from './Row';
+
+import { theme } from '@Config';
 
 type GridContainerProps = {
   /** Width of the adjoining gutter space. */
@@ -16,7 +20,7 @@ type GridContainerProps = {
 
 export const GridContainer = (props:GridContainerProps) => {
   const {
-    gutterWidth,
+    gutterWidth=theme.space[3],
     children,
     style
   } = props;
@@ -37,7 +41,3 @@ export const GridContainer = (props:GridContainerProps) => {
 
 GridContainer.Col = Column;
 GridContainer.Row = Row;
-
-GridContainer.defaultProps = {
-  gutterWidth: '16px'
-}

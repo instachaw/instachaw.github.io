@@ -12,12 +12,20 @@ import { Icon } from '@Components';
 
 type StoreMerchantProductControlsProps = {};
 
-
-export const StoreMerchantProductControls:React.FC<StoreMerchantProductControlsProps> = ({}) => {
+export const StoreMerchantProductControls:React.FC<StoreMerchantProductControlsProps> = () => {
   return (
-    <Flex mt={0} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}>
+    <Flex
+      mt={0}
+      flexDirection={'column'}
+      alignItems={'center'}
+      justifyContent={'center'}
+    >
       <Button variant={'transparentXs'}>
-        <Icon size={theme.space[3]} fill={theme.palette.grayscale[3]} name={'circlePlus'} />
+        <Icon
+          size={theme.space[3]}
+          fill={theme.palette.grayscale[3]}
+          name={'circlePlus'}
+        />
       </Button>
     </Flex>
   )

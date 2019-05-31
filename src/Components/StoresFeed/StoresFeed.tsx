@@ -10,6 +10,8 @@ import { StoresFeedItemSkeleton } from './StoresFeedItemAtoms';
 import { formatServiceHour, generateRandString } from '@Utilities';
 import { StoresSkeletonList, StoresList } from '@Generics';
 
+const { space } = theme;
+
 type StoresFeedProps = {
   /** Displays stores loading animation */
   isFetchingStores?: boolean,
@@ -17,19 +19,39 @@ type StoresFeedProps = {
   stores: IStorePage.IStoreData[]
 };
 
-const defaultProps = {
-  isFetchingStores: false,
-  stores: []
-}
+const renderStoresListItem = ({
+  brand,
+  description,
+  id,
+  name,
+  service_fee,
+  open_at,
+  close_at,
+  verified_at
+}: IStorePage.IStoreData) => 
+  <Box key={id} marginBottom={space[0]}>
+    <StoresFeedItem
+      description={description}
+      id={id}
+      thumbnailImageSrc={`/static/img/${brand}`}
+      title={name}
+      serviceHours={`${formatServiceHour(open_at)} am - ${formatServiceHour(close_at)} pm`}
+      serviceFee={`N${service_fee}`}
+      isVerified={verified_at !== null}
+    />
+  </Box>
 
-export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores }) => {
+export const StoresFeed:React.FC<StoresFeedProps> = ({
+  stores = [],
+  isFetchingStores = false
+}) => {
   return (
-    <Box padding={`${theme.space[0]} 0`}>
+    <Box padding={`${space[0]} 0`}>
       <Grid>
         <Grid.Row>
           <Grid.Col>
             <Heading
-              margin={`${theme.space[1]} 0`}
+              margin={`${space[1]} 0`}
               color={theme.palette.grayscale[2]}
               data-testid={'stores-screen-title'}
             >
@@ -40,40 +62,16 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
                 <StoresSkeletonList
                   items={generateRandString(5).split('')}
                   itemRenderer={(poolPick:any, key:number) => (
-                    <Box key={key} marginBottom={theme.space[1]}>
+                    <Box key={`${poolPick}-${key}`} marginBottom={space[1]}>
                       <StoresFeedItemSkeleton />
                     </Box>
                   )}
                 />
               </Box>
             }
-
+            
             {(stores.length > 0 && !isFetchingStores) && (
-            <StoresList
-              items={stores}
-              itemRenderer={({
-                brand,
-                description,
-                id,
-                name,
-                service_fee,
-                open_at,
-                close_at,
-                verified_at
-              }:IStorePage.IStoreData) => 
-                <Box key={id} marginBottom={theme.space[0]}>
-                  <StoresFeedItem
-                    description={description}
-                    id={id}
-                    thumbnailImageSrc={`/static/img/${brand}`}
-                    title={name}
-                    serviceHours={`${formatServiceHour(open_at)} am - ${formatServiceHour(close_at)} pm`}
-                    serviceFee={`N${service_fee}`}
-                    isVerified={verified_at !== null}
-                  />
-                </Box>
-              }
-            />
+              <StoresList items={stores} itemRenderer={renderStoresListItem} />
             )}
           </Grid.Col>
         </Grid.Row>
@@ -81,5 +79,3 @@ export const StoresFeed:React.FC<StoresFeedProps> = ({ stores, isFetchingStores 
     </Box>
   )
 }
-
-StoresFeed.defaultProps = defaultProps;

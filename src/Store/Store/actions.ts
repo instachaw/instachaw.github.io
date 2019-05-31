@@ -38,6 +38,39 @@ export const StoreActions = {
 	}),
 
 	/**
+	 * Sets the number if products available within a store.
+	 * 
+	 * @param  {boolean} isLoadingStore
+	 * @returns {StoreAction}
+	 */
+	setStoreProductsCount: (state:IStorePage.IStateProps, storeId:number, productsCount:number) => {
+		return StoreActions.Map({
+			storesProductsCountMap: {
+				...state.storesProductsCountMap,
+				[storeId]: productsCount
+			}
+		})
+	},
+
+	/**
+	 * Increments the products page index of a store.
+	 * 
+	 * @param  {boolean} isLoadingStore
+	 * @returns {StoreAction}
+	 */
+	incrementStoreProductsPageIndex: (state:IStorePage.IStateProps, storeId:number) => {
+		const { storesProductsPageIndexMap } = (state as any);
+		const page = storeId in storesProductsPageIndexMap ? storesProductsPageIndexMap[storeId] : 1;
+
+		return StoreActions.Map({
+			storesProductsPageIndexMap: {
+				...state.storesProductsPageIndexMap,
+				[storeId]: page + 1
+			}
+		})
+	},
+	
+	/**
 	 * Notifies the app concerning the store loading status
 	 * for a single store (not a list of stores!)
 	 * 
@@ -117,32 +150,49 @@ export const StoreActions = {
 		}
 	},
 
-	fetchStoreProducts: (storeId:number) => {
+	fetchStoreProducts: (storeId:number, pageIndex:number = 1) => {
 		const minNumStoreProducts:number = 5;
-		const { toggleStoreProductsFetchingStatus } = StoreActions
+		const {
+			toggleStoreProductsFetchingStatus,
+			setStoreProductsCount,
+			incrementStoreProductsPageIndex
+		} = StoreActions
 
 		return (dispatch:Dispatch, getState:any, api:any) => {
 			const storeEntities = getState().entities.store || {}
-			const canMakeRequest = greaterOrEquals(getObjectKeysCount(storeEntities), minNumStoreProducts);
+			const canMakeRequest = greaterOrEquals(
+				getObjectKeysCount(storeEntities),
+				minNumStoreProducts
+			);
 
 			if (!canMakeRequest) {
 				dispatch(toggleStoreProductsFetchingStatus(true));
 				return Promise.resolve();
 			}
 
-			dispatch(toggleStoreProductsFetchingStatus(getState().store.isFetchingStoreProducts));
+			dispatch(toggleStoreProductsFetchingStatus(false));
 
-			return api.fetchStoreProducts(storeId)
+			return api.fetchStoreProducts(storeId, pageIndex)
 				.then(api.checkStatus)
 				.then(api.toJSON)
-        .then(({ items }:IStorePage.IStoreProductsData) => {
+        .then(({ items, itemsCount }:IStorePage.IStoreProductsData) => {
 					const { entities } = normalize(items, [productSchema]);
+					let updatedStore = getState().store;
 
-					setTimeout(() => {
-						dispatch(toggleStoreProductsFetchingStatus(getState().store.isFetchingStoreProducts));
-					}, 1000)
+					dispatch(setStoreProductsCount(updatedStore, storeId, itemsCount));
+					dispatch(incrementStoreProductsPageIndex(updatedStore, storeId));
 
-					dispatch(EntityActions.Map({ ...entities }))
+					setTimeout(() => 
+						dispatch(toggleStoreProductsFetchingStatus(updatedStore.isFetchingStoreProducts)), 1000
+					)
+
+
+					dispatch(EntityActions.Map({
+						items: {
+							...getState().entities.items,
+							...entities.items
+						}
+					}))
 				})
         .catch((e:any) => api.errorHandler(dispatch, e))
 		} 

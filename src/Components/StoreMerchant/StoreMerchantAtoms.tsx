@@ -9,7 +9,6 @@ import {
 } from 'rebass';
 
 import { Stencil } from '@Components';
-
 import { theme } from '@Config';
 
 const { space } = theme;
@@ -18,10 +17,10 @@ export const StoreMerchantBriefSkeleton:React.FC = ({}) => (
   <Box data-testid={'stores-merchant-brief-skeleton'}>
     <Flex flexDirection={'column'} alignItems={'center'} py={1}>
       <Stencil
-        width={'64px'}
+        width={space[5]}
         style={{
-          margin: '16px 0',
-          height: '64px'
+          margin: `${space[1]} 0`,
+          height: space[5]
         }}
       />
       <Stencil width={'50%'} />
@@ -31,14 +30,14 @@ export const StoreMerchantBriefSkeleton:React.FC = ({}) => (
   </Box>
 )
 
-export const StoreProductItemSkeleton:React.FC = ({}) => (
+export const StoreProductItemSkeleton:React.FC = () => (
   <Box>
     <Card>
       <Flex margin={0} width={'100%'}>
         <Stencil
           width={'30%'}
           style={{
-            marginTop: '8px',
+            marginTop: space[0],
             height: '82px'
           }}
         />
@@ -50,11 +49,9 @@ export const StoreProductItemSkeleton:React.FC = ({}) => (
             marginBottom={space[0]}
           >
             <Stencil width={'60%'} />
-            <Stencil width={'24px'} height={'24px'} radius={'100%'} />
+            <Stencil width={space[2]} height={space[2]} radius={'100%'} />
           </Flex>
-          <Box width={'100%'}>
-            <Stencil height={'14px'} width={'20%'} />
-          </Box>
+          <Box width={1}><Stencil height={'14px'} width={'20%'} /></Box>
         </Flex>
       </Flex>
     </Card>

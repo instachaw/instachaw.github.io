@@ -21,7 +21,7 @@ type BaseProps = {
 
 const defaultProps = {
   name: 'checkLight',
-  size: 24,
+  size: theme.space[2],
   legacy: false,
   fill: 'currentColor',
   theme: theme

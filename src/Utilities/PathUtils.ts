@@ -1,6 +1,8 @@
-const { NEXT_PUBLIC_CLOUDINARY_BUCKET_ID } = process.env;
+'use strict';
 
 import { slugify } from './StringUtils'
+
+const { NEXT_PUBLIC_CLOUDINARY_BUCKET_ID } = process.env;
 const icons = require('../../src/Data/icons.json');
 
 const THUMBNAIL_URL = `https://res.cloudinary.com/instachaw/image/upload/e_sharpen,c_fill,w_150,h_100`;
@@ -53,6 +55,16 @@ export const getIconsPath = ({ name, legacy }: getIconsPathArgs) => {
 }
 
 /**
+ * Generates the query string for a store item.
+ * 
+ * @param  {number} id
+ * @return {string}
+ */
+export function getStoreItemQs(id: number) {
+  return `/store?slug=store-${id}`
+}
+
+/**
  * Generates the route string for a store item.
  * 
  * @param  {number} id
@@ -62,6 +74,21 @@ export const getIconsPath = ({ name, legacy }: getIconsPathArgs) => {
  */
 export function getStoreItemPath(id: number, title: string) {
   return `/store/${slugify(title)}-${id}`
+}
+
+/**
+ * Generates the route query string for a product within a store.
+ * 
+ * @param  {number} storeId
+ * @param  {number} productId
+ * 
+ * @return {string}
+ */
+export function getStoreProductQs(
+  storeId: number,
+  productId:number
+) {
+  return `/store?slug=store-${storeId}&productId=${productId}`
 }
 
 /**
@@ -89,7 +116,7 @@ export function getStoreProductPath(
 export function findRoutePathDepth (routePathString:any) {
   return routePathString
           .split('/')
-          .filter((pathFragment:any) => { return pathFragment !== ''})
+          .filter((pathFragment:any) => pathFragment !== '')
           .length;
 }
 
