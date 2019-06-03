@@ -31,7 +31,7 @@ export const StoreMerchantBriefSkeleton:React.FC = ({}) => (
 )
 
 export const StoreProductItemSkeleton:React.FC = () => (
-  <Box>
+  <Box data-testid={'store-product-item-skeleton'}>
     <Card>
       <Flex margin={0} width={'100%'}>
         <Stencil

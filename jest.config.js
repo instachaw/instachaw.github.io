@@ -24,6 +24,9 @@ module.exports = {
   ],
   automock: false,
   setupFiles: [
+    "./jest.setup.ts"
+  ],
+  setupFilesAfterEnv: [
     "./setupJest.ts"
   ],
   moduleNameMapper,

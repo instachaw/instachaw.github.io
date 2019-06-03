@@ -4,7 +4,7 @@ import { normalize } from 'normalizr';
 import { Dispatch } from 'redux';
 
 import { ActionTypes } from "@Constants";
-import { IStorePage } from '@Interfaces';
+import { IStorePage, IStoresPage } from '@Interfaces';
 
 import { EntityActions } from '@Store/Entity/actions';
 import { storeSchema, productSchema } from '@Store/schema';
@@ -43,7 +43,7 @@ export const StoreActions = {
 	 * @param  {boolean} isLoadingStore
 	 * @returns {StoreAction}
 	 */
-	setStoreProductsCount: (state:IStorePage.IStateProps, storeId:number, productsCount:number) => {
+	setStoreProductsCount: (state:IStoresPage.IStateProps, storeId:number, productsCount:number) => {
 		return StoreActions.Map({
 			storesProductsCountMap: {
 				...state.storesProductsCountMap,
@@ -58,7 +58,7 @@ export const StoreActions = {
 	 * @param  {boolean} isLoadingStore
 	 * @returns {StoreAction}
 	 */
-	incrementStoreProductsPageIndex: (state:IStorePage.IStateProps, storeId:number) => {
+	incrementStoreProductsPageIndex: (state:IStoresPage.IStateProps, storeId:number) => {
 		const { storesProductsPageIndexMap } = (state as any);
 		const page = storeId in storesProductsPageIndexMap ? storesProductsPageIndexMap[storeId] : 1;
 

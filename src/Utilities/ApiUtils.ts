@@ -1,4 +1,5 @@
 'use strict';
+require('isomorphic-fetch');
 
 const { NEXT_PUBLIC_API_URL } = process.env;
 

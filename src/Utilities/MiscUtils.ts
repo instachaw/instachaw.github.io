@@ -29,27 +29,3 @@ export function getObjectKeys (obj:Object):string[] { return Object.keys(obj) }
  * @returns {number}
  */
 export function getObjectKeysCount (obj:Object):number { return getObjectKeys(obj).length }
-
-// https://remysharp.com/2010/07/21/throttling-function-calls
-export function throttle(fn:any, threshhold:number, scope:any) {
-  threshhold || (threshhold = 250);
-  var last:number,
-      deferTimer:any;
-  return function () {
-    var context = scope;
-
-    var now = +new Date,
-        args = arguments;
-    if (last && now < last + threshhold) {
-      // hold on to it
-      clearTimeout(deferTimer);
-      deferTimer = setTimeout(function () {
-        last = now;
-        fn.apply(context, args);
-      }, threshhold);
-    } else {
-      last = now;
-      fn.apply(context, args);
-    }
-  };
-}

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Box, Heading } from 'rebass';
-import { palette as p } from 'styled-tools';
 import Head from 'next/head'
 
 import {
@@ -24,7 +23,7 @@ import {
 
 import { extractIdFromSlug, formatServiceHour } from '@Utilities';
 
-export class StoreItemPage extends React.Component<IStorePage.IProps, IStorePage.IState> {
+export class StoreProductsPage extends React.Component<IStorePage.IProps, IStorePage.IState> {
 	id:number;
 	handleNextStoreMerchandiseFetch:any = null;
 
@@ -53,9 +52,9 @@ export class StoreItemPage extends React.Component<IStorePage.IProps, IStorePage
 	}
 
 	public render(): JSX.Element {
-		const { store, getProducts, isFetchingStoreProducts, getStoreProductsCount } = this.props
+		const { getStoreState, getProducts, isFetchingStoreProducts, getStoreProductsCount } = this.props
 
-		const activeStore = store(this.id);
+		const activeStore = getStoreState(this.id);
 		const storeProducts = getProducts(this.id);
 		const totalStoreProductsCount = getStoreProductsCount(this.id)	
 		const storeIsReady = typeof activeStore === 'object';
@@ -109,7 +108,7 @@ export class StoreItemPage extends React.Component<IStorePage.IProps, IStorePage
 
 const mapStateToProps = (state: IStore) => {
   return {
-		store: (id:number) => getStore(id)(state),
+		getStoreState: (id:number) => getStore(id)(state),
 		getProducts: (storeId:number) => getStoreProducts(storeId)(state),
 		getStoreProductsCount: (storeId:number) => getStoreProductsCount(storeId)(state),
 		getStoreProductsPageIndex: (storeId:number) => getStoreProductsPageIndex(storeId)(state),
@@ -125,4 +124,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => (
 	}
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoreItemPage);
+export default connect(mapStateToProps, mapDispatchToProps)(StoreProductsPage);

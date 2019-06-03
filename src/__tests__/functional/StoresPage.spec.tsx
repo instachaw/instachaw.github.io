@@ -7,9 +7,9 @@ import StoreEndpoints from '@Store/Store/endpoints'
 import StoresPage from '../../../pages/stores';
 import storeMain from '@Store'
 
-let App:any = ({ store }:any) => (
+let App:any = ({ store, ...props }:any) => (
   <Provider store={store}>
-    <StoresPage />
+    <StoresPage router={props.router} />
   </Provider>
 )
 

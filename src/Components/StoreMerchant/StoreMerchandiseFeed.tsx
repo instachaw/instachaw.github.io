@@ -30,7 +30,7 @@ type ExtraProps = {
 
 function renderStoreSkeleton() {
   return (
-    <Box>
+    <Box data-testid={'store-merchandise-skeletal'}>
       <StoresSkeletonList
         items={generateRandString(5).split('')}
         itemRenderer={(item:string, key:number) => (
@@ -107,6 +107,7 @@ export class StoreMerchandiseFeed extends React.PureComponent<StoreMerchandiseFe
                     variant={'neutralSm'}
                     onClick={handleNextStoreMerchandiseFetch}
                     width={1}
+                    data-testid={'load-store-products-btn'}
                     isLoading={isFetchingStoreProducts}
                   >
                     See more...

@@ -9,29 +9,21 @@ declare module IStorePage {
     export interface IState { }
 	
 	export interface IStateProps {
-		/** Displays a loading indicator for stores */
-		isFetchingStores: boolean,
 		/** Displays a loading indicator for store products */
 		isFetchingStoreProducts: boolean,
 		/** Displays a loading indicator for a single store */
 		isLoadingStore: boolean,
-		/** A collection of stores */
-		stores: IStoreData[],
 		store?: IStoreData
-		// Associative map that holds the products count for each store.
-		storesProductsCountMap?: object,
-		// Holds the current products page index for each store.
-		storesProductsPageIndexMap?: object,
 		/** Gets the total number of products for a store */
 		getStoreProductsCount?: any,
 		/** Gets the total number of pages for store products */
 		getStoreProductsPageIndex?: any,
+		getStoreState: any,
 		getProducts?: any
 	}
 	
 	export interface IDispatchProps {
 		Map(payload: Actions.IMapPayload): Actions.IMapResponse;
-		fetchStores(): Promise,
 		fetchStoreProducts(storeId:number, pageIndex?:number): Promise,
 		getStore(id:number): Promise,
  	}
