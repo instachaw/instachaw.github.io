@@ -27,7 +27,9 @@ export const getStoreState = (state:IStore) => state.store;
 /**
  * Memoizes and loads a store from the app state.
  */
-export const getStore = (id:number) => createSelector([ getEntities ], (entities:any) => entities.stores[id])
+export const getStore = (id:number) => createSelector([ getEntities ], (entities:any) => { 
+  return entities.stores[id]
+})
 
 /**
  * Memoizes and retrieves the products in a store.
@@ -75,6 +77,6 @@ export const getStoreProductsCount = (storeId:number) => createSelector([ getSto
 /**
  * Returns the non-memoized fetching indicator.
  */
-export const getIsFetchingStores = (state:IStore):boolean => state.store.isFetchingStores;
+export const getIsFetchingStores = (state:IStore):boolean => (state.store as any).isFetchingStores;
 
 export const getIsFetchingStoreProducts = (state:IStore):boolean => state.store.isFetchingStoreProducts;

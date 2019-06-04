@@ -66,7 +66,7 @@ const defaultProps = {
 }
 
 
-export class HamburgerIcon extends React.Component<HamburgerMenuProps, HamburgerMenuState> {
+export class Hamburger extends React.Component<HamburgerMenuProps, HamburgerMenuState> {
   state = {
     isOpen: false
   }
@@ -108,7 +108,7 @@ export class HamburgerIcon extends React.Component<HamburgerMenuProps, Hamburger
     };
 
     return (
-      <div style={{ ...styles.container }} className={isOpen ? 'hamburgerLineOpen': 'hamburgerLineClose'} onClick={this.handleMenuToggleClick}>
+      <div style={{ ...styles.container }} data-testid="hamburger" className={isOpen ? 'hamburgerLineOpen': 'hamburgerLineClose'} onClick={this.handleMenuToggleClick}>
         <span style={{ ...styles.lineBase, ...styles.firstLine }} />
         <span style={{ ...styles.lineBase, ...styles.thirdLine }} />
       </div>

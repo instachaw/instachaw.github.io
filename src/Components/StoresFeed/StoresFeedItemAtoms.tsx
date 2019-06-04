@@ -73,7 +73,7 @@ export const StoresFeedItemFooter:React.FC<StoresFeedItemFooterProps> = ({
 )
 
 export const StoresFeedItemSkeleton:React.FC = ({}) => (
-  <Box>
+  <Box data-testid={'stores-feed-item-skeleton'}>
     <Card>
       <Flex margin={0} width={'100%'}>
         <Stencil

@@ -59,7 +59,8 @@ const RenderMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({
             store_id,
             title,
             description = '',
-            photo
+            photo,
+            price
           }: IStorePage.IStoreProductData) => (
             <StoreMerchantProduct
               key={id}
@@ -69,6 +70,7 @@ const RenderMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({
               photo={getStoreProductThumbnailPath(storeId, photo)}
               productTitle={title}
               productDesc={description}
+              productPrice={price}
             />
           )
         }

@@ -12,10 +12,6 @@ type AppContainerProps = { router:any }
 type AppContainerState = {}
 
 class AppContainer extends React.Component<AppContainerProps, AppContainerState> {
-  state = {
-    isMenuOpen: true
-  }
-
   render () {
     return (
       <ContextProvider>

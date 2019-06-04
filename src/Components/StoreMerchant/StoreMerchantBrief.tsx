@@ -35,7 +35,7 @@ export const StoreMerchantBrief = ({
 }: StoreMerchantBriefProps) => (
   <Card my={1} px={1} py={2} data-testid={'store-merchant-brief'}>
     <Flex flexDirection={'column'} alignItems={'center'}>
-      <Image width={theme.space[5]} src={brandSrc} />
+      <Image alt={`Brand logo for ${title}`} width={theme.space[5]} src={brandSrc} />
       <Heading color={grayscale[1]} fontSize={3}>{title}</Heading>
 
       <Flex mb={1}>

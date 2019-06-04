@@ -26,6 +26,8 @@ type StoreMerchantProductProps = {
   productTitle: string,
   /** Description for the product */
   productDesc?: string,
+  /** Price for the product */
+  productPrice: number,
   /** Product photo filename */
   photo: string,
   /** Displays a collapsed section */
@@ -37,9 +39,9 @@ export const StoreMerchantProduct:React.FC<StoreMerchantProductProps> = ({
   storePath,
   productId,
   productTitle,
+  productPrice,
   productDesc = '',
-  photo,
-  hasCollapsedSection = false
+  photo
 }) => {
   return (
     <Box data-testid={'store-merchant-product'} mb={1}>
@@ -61,16 +63,16 @@ export const StoreMerchantProduct:React.FC<StoreMerchantProductProps> = ({
           <Text fontSize={1} mb={0} color={grayscale[3]}>{truncateText(productDesc, 50)}</Text>
           <Button variant={'successMildXs'}>
             <Flex alignItems={'center'}>
-              <Text>N200</Text>
-              {hasCollapsedSection && <Icon
+              <Text>N{productPrice}</Text>
+              {/* {hasCollapsedSection && <Icon
                 size={theme.space[1]}
                 name="chevronDown"
                 style={{
                   transition: "transform 0.5s ease",
                   // TODO: make this dynamic
-                  transform: true ? `rotate(0deg)` : `rotate(180deg)`
+                  transform: `rotate(0deg)`
                 }}
-              />}
+              />} */}
             </Flex>
           </Button>
         </Box>

@@ -43,7 +43,7 @@ export const Column:React.FC<ColumnProps> = (props) => {
       ${lg && computeColumnWidth(lg)};
     }
 
-    @media only screen and (max-width: 1200px) {
+    @media only screen and (min-width: 992px) {
       ${xl && computeColumnWidth(xl)};
     }
   `;

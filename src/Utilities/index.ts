@@ -1,9 +1,9 @@
 export { callApi } from './ApiUtils'
 export { computeColumnWidth } from './DomUtils'
 export {
+  getObjectKeys,
   getObjectKeysCount,
-  greaterOrEquals,
-  throttle
+  greaterOrEquals
 } from './MiscUtils'
 export {
   getIconsPath,
