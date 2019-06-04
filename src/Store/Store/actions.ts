@@ -158,7 +158,7 @@ export const StoreActions = {
 			incrementStoreProductsPageIndex
 		} = StoreActions
 
-		return (dispatch:Dispatch, getState:any, api:any) => {
+		return async (dispatch:Dispatch, getState:any, api:any) => {
 			const storeEntities = getState().entities.store || {}
 			const canMakeRequest = greaterOrEquals(
 				getObjectKeysCount(storeEntities),
@@ -172,7 +172,7 @@ export const StoreActions = {
 
 			dispatch(toggleStoreProductsFetchingStatus(false));
 
-			return api.fetchStoreProducts(storeId, pageIndex)
+			return await api.fetchStoreProducts(storeId, pageIndex)
 				.then(api.checkStatus)
 				.then(api.toJSON)
         .then(({ items, itemsCount }:IStorePage.IStoreProductsData) => {
@@ -185,7 +185,6 @@ export const StoreActions = {
 					setTimeout(() => 
 						dispatch(toggleStoreProductsFetchingStatus(updatedStore.isFetchingStoreProducts)), 1000
 					)
-
 
 					dispatch(EntityActions.Map({
 						items: {
@@ -206,7 +205,7 @@ export const StoreActions = {
 	getStore: (id:number) => {
 		const { toggleStoreLoadingStatus } = StoreActions;
 
-		return (dispatch:Dispatch, getState:any, api:any):Promise<any> => {
+		return async (dispatch:Dispatch, getState:any, api:any):Promise<any> => {
 			// If the store has already been loaded avoid another HTTP request.
 			if (id in getState().entities.stores) {
 				dispatch(toggleStoreLoadingStatus(true));
@@ -217,7 +216,7 @@ export const StoreActions = {
 
 			dispatch(toggleStoreLoadingStatus(getState().store.isLoadingStore));
 
-			return api.loadStore(id)
+			return await api.loadStore(id)
 				.then(api.checkStatus)
 				.then(api.toJSON)
         .then((store:IStorePage.IStoreData) => {

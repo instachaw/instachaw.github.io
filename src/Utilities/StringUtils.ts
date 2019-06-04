@@ -3,8 +3,7 @@
 /**
  * Formats a opening time string.
  * 
- * @param {number} span - Width of a single column.
- * @param {number} gridSize - Total capacity of columns in the grid.
+ * @param {string} time - Format: 09:00:00.
  * 
  * @returns {string}
  */
@@ -51,7 +50,11 @@ export function extractIdFromSlug(slug:string):number {
  * @return number
  */
 export function truncateText(text:string, maxCharsCount:number = 100):string {
-  return text ? text.substring(0, maxCharsCount).concat('...'): ''
+  return (text && text.length > 0)
+          ? text
+            .substring(0, maxCharsCount)
+            .concat('...')
+          : ''
 }
 
 /**
@@ -61,9 +64,15 @@ export function truncateText(text:string, maxCharsCount:number = 100):string {
  * @return {string}
  */
 export function generateRandString(stringLength:number = 30):string {
-  return Math
-          .random()
-          .toString(36)
-          .substring(2)
-          .substring(0, stringLength);
+  let result = '';
+  let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let charactersLength = characters.length;
+  
+  for ( var i = 0; i < stringLength; i++ ) {
+    result += characters.charAt(
+      Math.floor(Math.random() * charactersLength)
+    );
+  }
+
+  return result;
 }

@@ -9,6 +9,7 @@ import {
 } from 'rebass';
 
 import { Stencil } from '@Components';
+import { StoreDisplayItemSkeleton } from '@Components/StoreDisplayItem/StoreDisplayItemAtoms';
 import { theme } from '@Config';
 
 const { space } = theme;
@@ -32,28 +33,10 @@ export const StoreMerchantBriefSkeleton:React.FC = ({}) => (
 
 export const StoreProductItemSkeleton:React.FC = () => (
   <Box data-testid={'store-product-item-skeleton'}>
-    <Card>
-      <Flex margin={0} width={'100%'}>
-        <Stencil
-          width={'30%'}
-          style={{
-            marginTop: space[0],
-            height: '82px'
-          }}
-        />
-        <Flex width={'70%'} flexDirection={'column'} alignItems={'center'} padding={`12px`}>
-          <Flex
-            alignItems={'center'}
-            width={'100%'}
-            justifyContent={'space-between'}
-            marginBottom={space[0]}
-          >
-            <Stencil width={'60%'} />
-            <Stencil width={space[2]} height={space[2]} radius={'100%'} />
-          </Flex>
-          <Box width={1}><Stencil height={'14px'} width={'20%'} /></Box>
-        </Flex>
-      </Flex>
-    </Card>
+    <StoreDisplayItemSkeleton
+      skeletonAddonMarkup={
+        <Stencil height={'14px'} width={'20%'} />
+      }
+    />
   </Box>
 )

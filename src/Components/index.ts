@@ -3,7 +3,7 @@ export { Badge } from './Badge';
 export { Button } from './Button';
 export { DockerBar } from './DockerBar';
 export { Icon } from './Icon';
-export { HamburgerIcon } from './HamburgerIcon';
+export { Hamburger } from './Hamburger';
 export { RootComponent } from './RootComponent';
 export { Grid } from './Grid';
 export { Link } from './Link';

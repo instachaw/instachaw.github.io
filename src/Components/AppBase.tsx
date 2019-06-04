@@ -44,17 +44,9 @@ export class AppBaseComponent extends React.Component<{ router?: any }>{
     return (
       <AppBaseElement>
         <Consumer>
-        {({ state, update }) => (
+        {({ }) => (
           <React.Fragment>
-            <Navbar
-              isMenuOpen={state.isMenuOpen || false}
-              onMenuToggleClick={() => {
-                update({
-                  key: 'isMenuOpen',
-                  value: !state.isMenuOpen
-                })
-              }}
-            />
+            <Navbar />
               <PageTransition
                 timeout={300}
                 classNames={`page-container ${transitionDirection} page-transition`}

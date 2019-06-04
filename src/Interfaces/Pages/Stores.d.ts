@@ -21,7 +21,7 @@ declare module IStoresPage {
 	
 	export interface IDispatchProps {
 		Map(payload: Actions.IMapPayload): Actions.IMapResponse;
-		fetchStores(): Promise,
+		fetchStores(): any,
  	}
     
 	export type IProps = IOwnProps & IStateProps & IDispatchProps;

@@ -4,12 +4,12 @@ import * as React from 'react';
 
 import {
   Box,
-  Card,
   Flex,
   Text
 } from 'rebass';
 
 import { theme } from '@Config';
+import { StoreDisplayItemSkeleton } from '@Components/StoreDisplayItem/StoreDisplayItemAtoms';
 import { Badge, VerificationMark, Stencil } from '@Components';
 
 const { space, palette: {grayscale} } = theme;
@@ -73,32 +73,14 @@ export const StoresFeedItemFooter:React.FC<StoresFeedItemFooterProps> = ({
 )
 
 export const StoresFeedItemSkeleton:React.FC = ({}) => (
-  <Box>
-    <Card>
-      <Flex margin={0} width={'100%'}>
-        <Stencil
-          width={'30%'}
-          style={{
-            marginTop: space[0],
-            height: '82px'
-          }}
-        />
-        <Flex width={'70%'} flexDirection={'column'} alignItems={'center'} padding={`12px`}>
-          <Flex
-            alignItems={'center'}
-            width={'100%'}
-            justifyContent={'space-between'}
-            marginBottom={space[0]}
-          >
-            <Stencil width={'45%'} />
-            <Stencil width={space[2]} height={space[2]} radius={'100%'} />
-          </Flex>
-          <Box width={'100%'}>
-            <Stencil height={'14px'} width={'70%'} />
-            <Stencil height={'14px'} width={'30%'} />
-          </Box>
-        </Flex>
-      </Flex>
-    </Card>
+  <Box data-testid={'stores-feed-item-skeleton'}>
+    <StoreDisplayItemSkeleton
+      skeletonAddonMarkup={
+        <Stencil height={'14px'} width={'20%'} />
+      }
+      titleMarkup={
+        <Stencil width={'45%'} />
+      }
+    />
   </Box>
 )

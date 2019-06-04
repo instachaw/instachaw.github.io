@@ -5,7 +5,7 @@ import { slugify } from './StringUtils'
 const { NEXT_PUBLIC_CLOUDINARY_BUCKET_ID } = process.env;
 const icons = require('../../src/Data/icons.json');
 
-const THUMBNAIL_URL = `https://res.cloudinary.com/instachaw/image/upload/e_sharpen,c_fill,w_150,h_100`;
+import { THUMBNAIL_URL } from '@Constants/ApiConstants'
 
 type iconsType = {
   [icon: string]: any
@@ -94,6 +94,7 @@ export function getStoreProductQs(
 /**
  * Generates the route string for a product within a store.
  * 
+ * @param  {string} storePath
  * @param  {number} id
  * @param  {string} title
  * 
@@ -129,5 +130,5 @@ export function findRoutePathDepth (routePathString:any) {
  * @returns {string};
  */
 export function getStoreProductThumbnailPath (storeId:number, photo:string):string {
-  return `${THUMBNAIL_URL}/${NEXT_PUBLIC_CLOUDINARY_BUCKET_ID}/store-${storeId}/${photo}`;
+return `${THUMBNAIL_URL}/${NEXT_PUBLIC_CLOUDINARY_BUCKET_ID}/store-${storeId}/${photo}`;
 }

@@ -74,6 +74,8 @@
     "test:unit": "jest /src/__tests__/unit",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "test:unit:coverage": "jest /src/__tests__/unit --coverage",
+    "test:functional:coverage": "jest /src/__tests__/functional --coverage",
     "heroku-prebuild": "npm i --dev && NODE_ENV=production next build",
     "export": "NODE_ENV=production next export",
     "analyze": "BUNDLE_ANALYZE=both npm run build",

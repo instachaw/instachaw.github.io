@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { Box, Flex } from "rebass";
 import { theme } from "@Config";
-import { Icon, HamburgerIcon, SearchBar, Grid } from "@Components";
+import { Icon, Hamburger, SearchBar, Grid } from "@Components";
 
-type NavbarProps = {
-  /** Renders the navbar menu */
-  isMenuOpen: boolean,
-  /** Callback for navbar menu toggle */
-  onMenuToggleClick: () => void
-}
+type NavbarProps = {}
 
 type NavbarState = {}
 
@@ -16,17 +11,19 @@ type NavbarItemProps = {
   span?: number;
 }
 
-const NavbarItem:React.FC<NavbarItemProps> = ({ children, span=2 }) => (
+const NavbarItem:React.FC<NavbarItemProps> = ({ children, span=2, ...props }) => (
   <Grid.Col
     sm={span}
+    md={span}
+    lg={span}
+    xl={span}
     gutterWidth={0}
     style={{
       alignItems: 'center',
       justifyContent: 'center'
     }}
-  >
-    <Flex>{children}</Flex>
-  </Grid.Col>
+    {...props}
+  >{children}</Grid.Col>
 )
 
 export class Navbar extends React.Component<NavbarProps, NavbarState> {
@@ -43,9 +40,15 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
       <Box bg={brand} style={{ position: 'fixed', zIndex: 400 }} width={1} py={1}>
         <Grid>
           <Grid.Row>
-            <NavbarItem><Icon size={32} name={'instachaw'} fill={brandLightest}/></NavbarItem>
-            <NavbarItem span={8}><SearchBar /></NavbarItem>
-            <NavbarItem><HamburgerIcon color={brandLightest} /></NavbarItem>
+            <NavbarItem>
+              <Flex data-testid={'navbar-brand'} ><Icon size={32} name={'instachaw'} fill={brandLightest}/></Flex>
+            </NavbarItem>
+            <NavbarItem span={8}>
+              <Flex data-testid={'search-bar'} width={1}><SearchBar /></Flex>
+            </NavbarItem>
+            <NavbarItem>
+              <Flex data-testid={'navbar-menu-toggle'}><Hamburger color={brandLightest} /></Flex>
+            </NavbarItem>
           </Grid.Row>
         </Grid>
       </Box>

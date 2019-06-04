@@ -59,7 +59,8 @@ const RenderMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({
             store_id,
             title,
             description = '',
-            photo
+            photo,
+            price
           }: IStorePage.IStoreProductData) => (
             <StoreMerchantProduct
               key={id}
@@ -69,6 +70,7 @@ const RenderMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({
               photo={getStoreProductThumbnailPath(storeId, photo)}
               productTitle={title}
               productDesc={description}
+              productPrice={price}
             />
           )
         }
@@ -95,25 +97,13 @@ export class StoreMerchandiseFeed extends React.PureComponent<StoreMerchandiseFe
         <Grid>
           <Grid.Row>
             <Grid.Col>
-              <RenderMerchandiseFeed
-                storeId={storeId}
-                storeTitle={storeTitle}
-                storeProducts={storeProducts}
-                isFetchingStoreProducts={isFetchingStoreProducts}
-              />
+              <RenderMerchandiseFeed storeId={storeId} storeTitle={storeTitle} storeProducts={storeProducts} isFetchingStoreProducts={isFetchingStoreProducts} />
               {(canLoadStoreProducts && storeProducts.length) &&
                 <Box width={1} mb={3}>
-                  <Button
-                    variant={'neutralSm'}
-                    onClick={handleNextStoreMerchandiseFetch}
-                    width={1}
-                    data-testid={'load-store-products-btn'}
-                    isLoading={isFetchingStoreProducts}
-                  >
+                  <Button variant={'neutralSm'} onClick={handleNextStoreMerchandiseFetch} width={1} data-testid={'load-store-products-btn'} isLoading={isFetchingStoreProducts}>
                     See more...
                   </Button>
-                </Box>
-              }
+                </Box>}
             </Grid.Col>
           </Grid.Row>
         </Grid>
