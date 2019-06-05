@@ -62,38 +62,19 @@ export class StoreProductsPage extends React.Component<IStorePage.IProps, IStore
 
 		if (storeIsReady) {
 			const storeOpenFrom = `${formatServiceHour(activeStore.open_at)} AM - ${formatServiceHour(activeStore.close_at)} PM`
-
-			brief = (
-				<StoreMerchantBrief
-					title={activeStore.name}
-					serviceFee={activeStore.service_fee}
-					brandSrc={`/static/img/${activeStore.brand}`}
-					storeOpenFrom={storeOpenFrom}
-				/>
-			)
+			brief = <StoreMerchantBrief title={activeStore.name} serviceFee={activeStore.service_fee} brandSrc={`/static/img/${activeStore.brand}`} storeOpenFrom={storeOpenFrom} />			
 		}
 
-		return (
-			<>
+		return (<>
 				<Head>
 					{ storeIsReady ? <title>Deliveries from {activeStore.name} on Instachaw</title>: <title>Fastest Deliveries on Instachaw</title>}
 				</Head>
 				<StoreMerchantBriefWrapper>{brief}</StoreMerchantBriefWrapper>
-				
 				<Box px={0} pb={5}>
 					<Heading mb={2} color={theme.palette.grayscale[1]}>Make your choices.</Heading>
-					{ storeIsReady &&
-						<StoreMerchandiseFeed
-							storeTitle={activeStore.name}
-							storeId={activeStore.id}
-							storeProducts={storeProducts}
-							canLoadStoreProducts={storeProducts.length < getStoreProductsCount(this.id)}
-							isFetchingStoreProducts={isFetchingStoreProducts}
-							handleNextStoreMerchandiseFetch={this.handleNextStoreMerchandiseFetch}
-						/>}
+					{storeIsReady && <StoreMerchandiseFeed storeTitle={activeStore.name} storeId={activeStore.id} storeProducts={storeProducts} canLoadStoreProducts={storeProducts.length < getStoreProductsCount(this.id)} isFetchingStoreProducts={isFetchingStoreProducts} handleNextStoreMerchandiseFetch={this.handleNextStoreMerchandiseFetch} />}
 				</Box>
-			</>
-		);
+			</>);
 	}
 }
 

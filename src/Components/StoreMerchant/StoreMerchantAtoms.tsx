@@ -4,7 +4,6 @@ import * as React from 'react';
 
 import {
   Box,
-  Card,
   Flex
 } from 'rebass';
 
