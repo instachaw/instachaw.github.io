@@ -6,6 +6,7 @@ import { Box, Flex, Heading, Image, Text } from 'rebass';
 
 import { theme } from '@Config';
 import { Grid } from '@Components'
+import { StoreMerchantBriefProps } from '@Constants/ComponentTypes'
 
 const {
   palette: {
@@ -16,16 +17,6 @@ const {
   Card
 } = theme;
 
-type StoreMerchantBriefProps = {
-  /** Store merchant name or title */
-  title: string,
-  /** Store merchant service fee */
-  serviceFee: string,
-  /** Store merchant service fee */
-  storeOpenFrom: string,
-  /** Store merchant brand image path */
-  brandSrc: string
-};
 
 export const StoreMerchantBrief = ({
   brandSrc,
