@@ -2,7 +2,6 @@ const withPlugins = require('next-compose-plugins');
 
 const withTypescript = require('@zeit/next-typescript')
 const withCSS = require('@zeit/next-css')
-const withSass = require('@zeit/next-sass');
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const nextEnv = require('next-env');
 const dotenvLoad = require('dotenv-load');
@@ -13,7 +12,6 @@ module.exports = withPlugins(
 	[
 		[withTypescript],
 		[withCSS],
-		[withSass],
 		[withBundleAnalyzer],
 		[nextEnv()]
 	],
@@ -28,6 +26,13 @@ module.exports = withPlugins(
 			browser: {
 				analyzerMode: 'static',
 				reportFilename: '../bundles/client.html'
+			}
+		},
+
+		exportPathMap: function() {
+			return {
+				'/': { page: '/home' },
+				'/stores/index.html': { page: '/stores' }
 			}
 		}
 	}

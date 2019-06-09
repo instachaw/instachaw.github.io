@@ -6,7 +6,6 @@
   "dependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "dotenv-load": "^1.1.0",
     "http-proxy-middleware": "^0.19.1",
@@ -76,7 +75,7 @@
     "test:unit:coverage": "jest /src/__tests__/unit --coverage",
     "test:functional:coverage": "jest /src/__tests__/functional --coverage",
     "heroku-prebuild": "npm i --dev && NODE_ENV=production next build",
-    "export": "NODE_ENV=production next export",
+    "export": "set NODE_ENV=production next export",
     "analyze": "BUNDLE_ANALYZE=both npm run build",
     "release": "standard-version"
   },
