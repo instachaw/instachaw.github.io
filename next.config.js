@@ -8,6 +8,22 @@ const dotenvLoad = require('dotenv-load');
 
 dotenvLoad();
 
+const {
+	NODE_ENV,
+	NEXT_PUBLIC_DEVELOPMENT_API_URL,
+	NEXT_PUBLIC_PRODUCTION_API_URL
+} = process.env
+const env = NODE_ENV || 'development'
+
+const envSpecifics = {
+  development: {
+    api: NEXT_PUBLIC_DEVELOPMENT_API_URL,
+  },
+  production: {
+    api: NEXT_PUBLIC_PRODUCTION_API_URL,
+  },
+}[env];
+
 module.exports = withPlugins(
 	[
 		[withTypescript],
@@ -16,6 +32,9 @@ module.exports = withPlugins(
 		[nextEnv()]
 	],
 	{
+		publicRuntimeConfig: {
+			envSpecifics
+		},
 		analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
 		analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
 		bundleAnalyzerConfig: {

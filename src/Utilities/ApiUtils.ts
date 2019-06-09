@@ -1,7 +1,10 @@
 'use strict';
+
+import getConfig from 'next/config';
+
 const fetch = require('isomorphic-fetch');
 
-const { NEXT_PUBLIC_API_URL } = process.env;
+const { publicRuntimeConfig: { envSpecifics } } = getConfig();
 
 type callApiArgs = {
   /** Endpoint to call */
@@ -25,7 +28,7 @@ export function callApi ({
   method = 'GET',
   headers = {}
 }: callApiArgs) {
-  return fetch(`${NEXT_PUBLIC_API_URL}/${endpoint}`, {
+  return fetch(`${envSpecifics.api}/${endpoint}`, {
     method,
     headers: {
       'Accept': 'application/json',
