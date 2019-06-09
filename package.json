@@ -1,6 +1,6 @@
 {
   "name": "delight-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Delight UI is the front facing client for the Delight food systems.",
   "main": "app/server.js",
   "dependencies": {
