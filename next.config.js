@@ -51,7 +51,9 @@ module.exports = withPlugins(
 		exportPathMap: function() {
 			return {
 				'/': { page: '/home' },
-				'/stores/index.html': { page: '/stores' }
+				'/stores/index.html': { page: '/stores' },
+				'/store/kilimanjaro-choba-1/index.html': { page: '/store', query: { slug: 'kilimanjaro-choba-1' } },
+				'/store/genesis-choba-2/index.html': { page: '/store', query: { slug: 'genesis-choba-2' } }
 			}
 		}
 	}
