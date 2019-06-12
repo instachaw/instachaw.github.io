@@ -1,11 +1,11 @@
 'use strict';
 
 import { slugify } from './StringUtils'
+import { THUMBNAIL_URL } from '@Constants/ApiConstants'
 
 const { NEXT_PUBLIC_CLOUDINARY_BUCKET_ID } = process.env;
 const icons = require('../../src/Data/icons.json');
-
-import { THUMBNAIL_URL } from '@Constants/ApiConstants'
+const cloudinaryBucketId = NEXT_PUBLIC_CLOUDINARY_BUCKET_ID || 'v1534208541';
 
 type iconsType = {
   [icon: string]: any
@@ -130,5 +130,5 @@ export function findRoutePathDepth (routePathString:any) {
  * @returns {string};
  */
 export function getStoreProductThumbnailPath (storeId:number, photo:string):string {
-return `${THUMBNAIL_URL}/${NEXT_PUBLIC_CLOUDINARY_BUCKET_ID}/store-${storeId}/${photo}`;
+return `${THUMBNAIL_URL}/${cloudinaryBucketId}/store-${storeId}/${photo}`;
 }
