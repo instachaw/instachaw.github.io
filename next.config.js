@@ -25,15 +25,11 @@ const envSpecifics = {
   production: {
     api: NEXT_PUBLIC_PRODUCTION_API_URL,
     host: NEXT_PUBLIC_PRODUCTION_HOST_URL,
-	},
-  test: {
-    api: NEXT_PUBLIC_DEVELOPMENT_API_URL,
-    host: NEXT_PUBLIC_DEVELOPMENT_HOST_URL,
   },
-  // test: {
-  //   api: NEXT_PUBLIC_PRODUCTION_API_URL,
-  //   host: NEXT_PUBLIC_PRODUCTION_HOST_URL,
-  // },
+  test: {
+    api: NEXT_PUBLIC_PRODUCTION_API_URL,
+    host: NEXT_PUBLIC_PRODUCTION_HOST_URL,
+  },
 }[env];
 
 const publicRuntimeConfig = {
