@@ -22,7 +22,15 @@ const envSpecifics = {
   production: {
     api: NEXT_PUBLIC_PRODUCTION_API_URL,
   },
+  test: {
+    api: NEXT_PUBLIC_PRODUCTION_API_URL,
+  },
 }[env];
+
+const publicRuntimeConfig = {
+	envSpecifics
+};
+
 
 module.exports = withPlugins(
 	[
@@ -32,9 +40,7 @@ module.exports = withPlugins(
 		[nextEnv()]
 	],
 	{
-		publicRuntimeConfig: {
-			envSpecifics
-		},
+		publicRuntimeConfig,
 		analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
 		analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
 		bundleAnalyzerConfig: {
@@ -58,3 +64,5 @@ module.exports = withPlugins(
 		}
 	}
 );
+
+module.exports.publicRuntimeConfig = publicRuntimeConfig;

@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { render, cleanup, wait } from 'react-testing-library'
 import withRedux from 'next-redux-wrapper';
 
-import StoreEndpoints from '@Store/Store/endpoints'
 import StorePage from '../../../pages/store';
 import storeMain from '@Store'
 
@@ -27,7 +26,6 @@ const setup = () => {
   }
 }
 
-const storeProductData = require('../../__mocks__/store.json')
 const storeData = require('../../__mocks__/stores.json').stores[0]
 
 beforeEach(() => {

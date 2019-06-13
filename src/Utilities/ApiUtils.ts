@@ -1,7 +1,6 @@
 'use strict';
 
 import getConfig from 'next/config';
-
 const fetch = require('isomorphic-fetch');
 
 const { publicRuntimeConfig: { envSpecifics } } = getConfig();
