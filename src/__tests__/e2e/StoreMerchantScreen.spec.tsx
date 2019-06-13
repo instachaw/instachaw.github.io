@@ -1,10 +1,11 @@
 import { setupPuppeteer } from '../test-utils';
 import { wait } from 'react-testing-library';
-
 const { getDocument, queries } = require('pptr-testing-library')
+import { host } from './'
+
 const { queryAllByTestId, getByTestId, getByText } = queries;
 
-const storeUrl = 'http://localhost:3000/store/genesis-choba-2';
+const storeUrl = `${host}/store/genesis-choba-2`;
 const storeInfo = {
   title: 'Genesis, Choba',
   storeHours: '9 AM - 9 PM',
@@ -69,7 +70,7 @@ describe('Store Product Page', () => {
         await wait(async () => {
           storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
           expect(storeMerchantProducts.length).toBeGreaterThan(storeMerchantProductsCount)
-        })
+        }, { timeout: 50000 })
       })
   
       done()

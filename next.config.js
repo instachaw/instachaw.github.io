@@ -11,19 +11,24 @@ dotenvLoad();
 const {
 	NODE_ENV,
 	NEXT_PUBLIC_DEVELOPMENT_API_URL,
-	NEXT_PUBLIC_PRODUCTION_API_URL
+	NEXT_PUBLIC_DEVELOPMENT_HOST_URL,
+	NEXT_PUBLIC_PRODUCTION_API_URL,
+	NEXT_PUBLIC_PRODUCTION_HOST_URL
 } = process.env
 const env = NODE_ENV || 'development'
 
 const envSpecifics = {
   development: {
     api: NEXT_PUBLIC_DEVELOPMENT_API_URL,
+    host: NEXT_PUBLIC_DEVELOPMENT_HOST_URL,
   },
   production: {
     api: NEXT_PUBLIC_PRODUCTION_API_URL,
+    host: NEXT_PUBLIC_PRODUCTION_HOST_URL,
   },
   test: {
     api: NEXT_PUBLIC_PRODUCTION_API_URL,
+    host: NEXT_PUBLIC_PRODUCTION_HOST_URL,
   },
 }[env];
 
