@@ -1,6 +1,6 @@
 {
   "name": "delight-ui",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Delight UI is the front facing client for Instachaw.",
   "main": "app/server.js",
   "dependencies": {
