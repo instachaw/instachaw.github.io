@@ -66,7 +66,7 @@ describe('Store Product Page', () => {
         
         loadStoreBtn.click()
 
-        const textHandle = await loadStoreBtn.getProperty('disabled');
+        const textHandle = await loadStoreBtn.getProperty('innerText');
         const text = await textHandle.jsonValue();
         console.log({ text, textHandle })
 
