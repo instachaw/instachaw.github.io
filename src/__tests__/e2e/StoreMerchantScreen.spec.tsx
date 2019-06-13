@@ -64,7 +64,7 @@ describe('Store Product Page', () => {
         // Load more products...
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
         
-        const textHandle = await loadStoreBtn.getProperty('innerText');
+        const textHandle = await loadStoreBtn.getProperty('value');
         const text = await textHandle.jsonValue();
         console.log(text)
 
