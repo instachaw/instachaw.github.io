@@ -65,7 +65,8 @@ describe('Store Product Page', () => {
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
         loadStoreBtn.click()
 
-        const text = await loadStoreBtn.getProperty('innerText');
+        const textHandle = await loadStoreBtn.getProperty('innerText');
+        const text = await textHandle.jsonValue();
         console.log(text)
 
         // Expect new products to have been loaded
