@@ -62,9 +62,8 @@ describe('Store Product Page', () => {
         const storeMerchantProductsCount = storeMerchantProducts.length;
   
         // Load more products...
-        const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
-        loadStoreBtn.click()
-  
+        await expect(page).toClick('button', { text: 'See more...' })
+
         // Expect new products to have been loaded
         await wait(async () => {
           storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
