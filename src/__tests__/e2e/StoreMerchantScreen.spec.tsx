@@ -1,6 +1,5 @@
 import { setupPuppeteer } from '../test-utils';
-import { wait } from 'react-testing-library';
-const { getDocument, queries } = require('pptr-testing-library')
+const { getDocument, queries, wait } = require('pptr-testing-library')
 import { host } from './'
 
 const { queryAllByTestId, getByTestId, getByText } = queries;
@@ -64,12 +63,13 @@ describe('Store Product Page', () => {
   
         // Load more products...
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
-        await loadStoreBtn.click()
+        loadStoreBtn.click()
   
         // Expect new products to have been loaded
         await wait(async () => {
           storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
-          expect(storeMerchantProducts.length).toBeGreaterThan(storeMerchantProductsCount - 1)
+
+          return expect(storeMerchantProducts.length).toBeGreaterThan(storeMerchantProductsCount)
         })
       })
   

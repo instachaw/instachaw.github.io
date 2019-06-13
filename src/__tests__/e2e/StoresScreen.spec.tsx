@@ -1,7 +1,5 @@
 import { setupPuppeteer } from '../test-utils';
-import { wait } from 'react-testing-library';
-
-const { getDocument, queries } = require('pptr-testing-library')
+const { getDocument, queries, wait } = require('pptr-testing-library')
 import { host } from './'
 
 const { queryAllByTestId } = queries;
