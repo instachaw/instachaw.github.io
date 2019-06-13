@@ -65,7 +65,7 @@ describe('Store Product Page', () => {
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
         await loadStoreBtn.click()
 
-        expect(loadStoreBtn.hasAttribute('disabled')).toBeTruthy();
+        await page.waitFor(3000)
         // Expect new products to have been loaded
         await wait(async () => {
           storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
