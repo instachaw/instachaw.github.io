@@ -60,6 +60,8 @@ describe('Store Product Page', () => {
         // Store the number of merchant products loaded
         let storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
         const storeMerchantProductsCount = storeMerchantProducts.length;
+
+        await page.waitFor(4000)
   
         // Load more products...
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
