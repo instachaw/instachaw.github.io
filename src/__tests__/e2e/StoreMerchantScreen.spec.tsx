@@ -64,9 +64,9 @@ describe('Store Product Page', () => {
         // Load more products...
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
         
-        //const textHandle = await loadStoreBtn.getProperty();
-        //const text = await textHandle.jsonValue();
-        //console.log(text)
+        const textHandle = await loadStoreBtn.getProperty('disabled');
+        const text = await textHandle.jsonValue();
+        console.log({ text, textHandle })
 
         loadStoreBtn.click()
 
