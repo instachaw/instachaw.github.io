@@ -64,7 +64,7 @@ describe('Store Product Page', () => {
         // Load more products...
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
         
-        const textHandle = await loadStoreBtn.getProperty('value');
+        const textHandle = await loadStoreBtn.getProperty();
         const text = await textHandle.jsonValue();
         console.log(text)
 
@@ -74,7 +74,7 @@ describe('Store Product Page', () => {
         await wait(async () => {
           storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
 
-          return expect(storeMerchantProducts.length).toBeGreaterThan(storeMerchantProductsCount - 1)
+          return expect(storeMerchantProducts.length).toBeGreaterThan(storeMerchantProductsCount)
         })
       })
   
