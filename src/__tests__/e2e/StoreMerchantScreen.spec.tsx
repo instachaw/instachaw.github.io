@@ -63,9 +63,9 @@ describe('Store Product Page', () => {
   
         // Load more products...
         const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
-        await loadStoreBtn.click()
+        loadStoreBtn.click()
 
-        await page.waitFor(3000)
+        await page.waitFor(500000)
         // Expect new products to have been loaded
         await wait(async () => {
           storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
