@@ -6,5 +6,6 @@ exclude_patterns:
 - ".circleci/**"
 - "src/__tests__/**"
 - "src/Constants/**"
+- "src/Config/**"
 - "**/reducer.ts"
 - "**/actions.ts"

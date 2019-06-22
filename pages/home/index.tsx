@@ -1,19 +1,15 @@
-//#region Global Imports
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-//#endregion Global Imports
 
-//#region Interface Imports
 import { IHomePage, IStore } from '@Interfaces';
 import { HomeActions } from '@Store/Home/actions';
-//#endregion Interface Imports
 
 export class HomePage extends React.Component<IHomePage.IProps, IHomePage.IState> {
 	public render(): JSX.Element {
 		return (
 			<div className="title">
-				Hello!
+				<h2>Welcome to Instachaw v2</h2>
 			</div>
 		);
 	}

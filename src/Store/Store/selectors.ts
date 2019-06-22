@@ -66,8 +66,7 @@ export const getStoreProductsCount = (storeId:number) => createSelector([ getSto
   const { storesProductsCountMap } = storeState;
 
   if (getObjectKeysCount(storesProductsCountMap) &&
-    storeId in storesProductsCountMap
-  ) {
+    storeId in storesProductsCountMap) {
     return storesProductsCountMap[storeId];
   }
 

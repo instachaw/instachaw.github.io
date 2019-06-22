@@ -1,10 +1,10 @@
 import { setupPuppeteer } from '../test-utils';
 const { getDocument, queries, wait } = require('pptr-testing-library')
-import { host } from './'
+import { storeUrl } from './'
 
 const { queryAllByTestId, getByTestId, getByText } = queries;
 
-const storeUrl = `${host}/store/genesis-choba-2`;
+;
 const storeInfo = {
   title: 'Genesis, Choba',
   storeHours: '9 AM - 9 PM',

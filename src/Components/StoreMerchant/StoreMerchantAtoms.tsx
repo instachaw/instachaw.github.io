@@ -10,6 +10,8 @@ import {
 import { Stencil } from '@Components';
 import { StoreDisplayItemSkeleton } from '@Components/StoreDisplayItem/StoreDisplayItemAtoms';
 import { theme } from '@Config';
+import { StoresSkeletonList } from '@Generics';
+import { generateRandString } from '@Utilities'
 
 const { space } = theme;
 
@@ -36,6 +38,19 @@ export const StoreProductItemSkeleton:React.FC = () => (
       skeletonAddonMarkup={
         <Stencil height={'14px'} width={'20%'} />
       }
+    />
+  </Box>
+)
+
+export const RenderStoreProductsSkeleton = () => (
+  <Box data-testid={'store-merchandise-skeletal'}>
+    <StoresSkeletonList
+      items={generateRandString(5).split('')}
+      itemRenderer={(item:string, key:number) => (
+        <Box key={key} marginBottom={theme.space[1]}>
+          <StoreProductItemSkeleton />
+        </Box>
+      )}
     />
   </Box>
 )

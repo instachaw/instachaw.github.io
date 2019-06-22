@@ -9,6 +9,11 @@ export default {
 		SetReducer: 'App_SetReducer'
 	},
 
+	Search : {
+		ResetReducer: 'Search_ResetReducer',
+		SetReducer: 'Search_SetReducer'
+	},
+
 	Store : {
 		ResetReducer: 'Store_ResetReducer',
 		SetReducer: 'Store_SetReducer'

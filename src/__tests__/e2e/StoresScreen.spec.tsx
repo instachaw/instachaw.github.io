@@ -1,10 +1,9 @@
 import { setupPuppeteer } from '../test-utils';
 const { getDocument, queries, wait } = require('pptr-testing-library')
-import { host } from './'
+import { storesUrl } from './'
 
 const { queryAllByTestId } = queries;
 
-const storesUrl = `${host}/stores`;
 
 describe('Stores Page', () => {  
   test('Contains more than one store', async (done) => {

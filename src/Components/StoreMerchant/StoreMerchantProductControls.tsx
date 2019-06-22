@@ -20,7 +20,7 @@ export const StoreMerchantProductControls:React.FC<StoreMerchantProductControlsP
       alignItems={'center'}
       justifyContent={'center'}
     >
-      <Button variant={'transparentXs'}>
+      <Button variant={'transparentXs'} style={{ padding: 0 }}>
         <Icon
           size={theme.space[3]}
           fill={theme.palette.grayscale[3]}
