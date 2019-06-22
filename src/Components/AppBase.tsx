@@ -8,8 +8,11 @@ import { PageTransition } from 'next-page-transitions';
 import { withRouter } from 'next/router';
 
 import { DockerBar, Navbar } from '@Components';
+import { RouteConstants } from '@Constants';
 import { Consumer } from '@Containers/ContextProvider';
 import { findRoutePathDepth } from '@Utilities';
+
+const { SEARCH_ROUTE } = RouteConstants;
 
 export const AppBaseElement = styled(Box)`
   font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -17,9 +20,19 @@ export const AppBaseElement = styled(Box)`
   height: 100%;
 `;
 
-export class AppBaseComponent extends React.Component<{ router?: any }>{
+type AppBaseComponentProps = { router?: any }
+
+export class AppBaseComponent extends React.Component<AppBaseComponentProps> {
+  public searchInputRef:React.RefObject<HTMLInputElement>;
+
   state = {
     prevPathDepth: 0
+  }
+
+  constructor (props:AppBaseComponentProps) {
+    super(props)
+    this.searchInputRef = React.createRef();
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -37,21 +50,34 @@ export class AppBaseComponent extends React.Component<{ router?: any }>{
     })
   }
 
+  handleSearchSubmit(e:React.FormEvent) {
+    e.preventDefault();
+
+    const { value } = (this.searchInputRef.current as any)
+
+    this.props.router.push({
+      pathname: SEARCH_ROUTE,
+      query: { q: value }
+    })
+  }
+
   render() {
-    const { children, router } = this.props;
-    const transitionDirection = findRoutePathDepth(router.asPath) >= this.state.prevPathDepth ? 'left': 'right';
+    const { children, router: {asPath, query, route} } = this.props;
+    const transitionDirection = findRoutePathDepth(asPath) >= this.state.prevPathDepth ? 'left': 'right';
+    const searchInputValue = route === SEARCH_ROUTE ? query.q: '';
 
     return (
       <AppBaseElement>
         <Consumer>
-        {({ }) => (
+        {() => (
           <React.Fragment>
-            <Navbar />
-              <PageTransition
-                timeout={300}
-                classNames={`page-container ${transitionDirection} page-transition`}
-              >
-                <React.Fragment key={router.route}>{children}</React.Fragment>
+            <Navbar
+              onSearchSubmit={this.handleSearchSubmit}
+              searchInputRef={this.searchInputRef}
+              searchInputValue={searchInputValue}
+              />
+              <PageTransition timeout={300} classNames={`page-container ${transitionDirection} page-transition`}>
+                <React.Fragment key={route}>{children}</React.Fragment>
               </PageTransition>
             <DockerBar />
           </React.Fragment>

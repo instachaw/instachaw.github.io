@@ -8,7 +8,9 @@ import { IEntity } from '@Interfaces/Redux/Entity';
  * INITIAL_STATE
 */
 const INITIAL_STATE: IEntity.IStateProps = {
-	stores: {}
+	stores: {},
+	items: {},
+	searchResults: {}
 };
 
 type IMapPayload = IEntity.Actions.IMapPayload;

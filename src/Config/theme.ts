@@ -1,4 +1,4 @@
-import { Box } from 'rebass';
+import { Box, Text } from 'rebass';
 import styled from 'styled-components';
 
 const grayscale = [
@@ -62,7 +62,11 @@ export const shadows = [
 const buttonVariants = {
   base: {
     margin: '0',
-    borderRadius: radius[1]
+    borderRadius: radius[1],
+    padding: `${space[0]} ${space[1]}`,
+    fontSize: fontSizes[1],
+    display: 'inline-flex',
+    alignItems: 'center'
   },
   primary: {
     color: primary[primary.length - 1],
@@ -83,14 +87,22 @@ const buttonVariants = {
   outline: {
     boxShadow: 'inset 0 0 0 2px'
   },
+  primaryOutline: {
+    boxShadow: `inset 0 0 0 1px ${primary[3]}`,
+    color: primary[3]
+  },
   neutral: {
-    color: grayscale[0],
-    backgroundColor: grayscale[5],
-    border: `1px solid ${grayscale[5]}`,
+    color: grayscale[1],
+    backgroundColor: grayscale[6],
+    border: `1px solid ${grayscale[6]}`,
   },
   xs: {
     padding: `${parseInt(space[0]) / 2}px ${space[1]}`,
     fontSize: fontSizes[1]
+  },
+  xxs: {
+    padding: `${parseInt(space[0]) / 4}px ${space[0]}`,
+    fontSize: fontSizes[0]
   },
   sm: {
     padding: `${space[1]} ${space[1]}`,
@@ -119,9 +131,23 @@ const buttons = {
     ...buttonVariants.xs,
     ...buttonVariants.base
   },
+  successMild: {
+    ...buttonVariants.successMild,
+    ...buttonVariants.base
+  },
   successMildXs: {
     ...buttonVariants.successMild,
+    ...buttonVariants.base,
     ...buttonVariants.xs,
+  },
+  successMildXxs: {
+    ...buttonVariants.successMild,
+    ...buttonVariants.base,
+    ...buttonVariants.xxs
+  },
+  primaryOutline: {
+    ...buttonVariants.primaryOutline,
+    ...buttonVariants.transparent,
     ...buttonVariants.base
   },
   outline: {
@@ -138,6 +164,11 @@ const buttons = {
     ...buttonVariants.sm,
     ...buttonVariants.base
   },
+  neutralXxs: {
+    ...buttonVariants.neutral,
+    ...buttonVariants.base,
+    ...buttonVariants.xxs
+  },
   transparentXs: {
     ...buttonVariants.transparent,
     ...buttonVariants.xs,
@@ -151,6 +182,10 @@ const Card = styled(Box)`
   border-radius: ${radius[1]};
   box-shadow: ${(props:any) => props.shadowSize ? shadows[props.shadowSize] : shadows[0]}
 `;
+
+const CenteredText = styled(Text)`
+  text-align: center;
+`
 
 const Heading = styled(Box)`
   font-weight: bold;
@@ -234,6 +269,7 @@ export const theme = {
   shadows,
 
   Card,
+  CenteredText,
   Heading,
   Input,
   Paragraph

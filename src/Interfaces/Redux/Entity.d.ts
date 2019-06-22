@@ -4,6 +4,8 @@ import { IStoreData } from '@Interfaces/Redux/Store';
 declare module IEntity {
 	export interface IStateProps {
 		stores: {},
+		items: {},
+		searchResults: {}
 	}
 	
 	export interface IDispatchProps {

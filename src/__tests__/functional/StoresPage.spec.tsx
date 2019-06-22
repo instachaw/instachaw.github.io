@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Provider } from 'react-redux';
-import { render, cleanup, wait, fireEvent, getByTestId } from 'react-testing-library'
+import { render, cleanup, wait } from 'react-testing-library'
 import withRedux from 'next-redux-wrapper';
 
 import StoresPage from '../../../pages/stores';

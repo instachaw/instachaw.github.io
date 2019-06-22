@@ -3,7 +3,11 @@ import { Box, Flex } from "rebass";
 import { theme } from "@Config";
 import { Icon, Hamburger, SearchBar, Grid } from "@Components";
 
-type NavbarProps = {}
+type NavbarProps = {
+  onSearchSubmit: (e:React.FormEvent) => any
+  searchInputRef: React.RefObject<HTMLInputElement>,
+  searchInputValue: string
+}
 
 type NavbarState = {}
 
@@ -26,15 +30,12 @@ const NavbarItem:React.FC<NavbarItemProps> = ({ children, span=2, ...props }) =>
   >{children}</Grid.Col>
 )
 
-export class Navbar extends React.Component<NavbarProps, NavbarState> {
-  constructor(props:NavbarProps) {
-    super(props)
-  }
-  
+export class Navbar extends React.Component<NavbarProps, NavbarState> {  
   render() {
     const { palette: { primary } } = theme;
     const brand = primary[3];
     const brandLightest = primary[6];
+    const { onSearchSubmit, searchInputRef, searchInputValue } = this.props;
 
     return (
       <Box bg={brand} style={{ position: 'fixed', zIndex: 400 }} width={1} py={1}>
@@ -44,7 +45,11 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
               <Flex data-testid={'navbar-brand'} ><Icon size={32} name={'instachaw'} fill={brandLightest}/></Flex>
             </NavbarItem>
             <NavbarItem span={8}>
-              <Flex data-testid={'search-bar'} width={1}><SearchBar /></Flex>
+              <Flex data-testid={'search-bar'} width={1}>
+                <form method="POST" style={{ width: '100%' }} onSubmit={onSearchSubmit}>
+                  <SearchBar inputValue={searchInputValue} inputRef={searchInputRef}/>
+                </form>
+              </Flex>
             </NavbarItem>
             <NavbarItem>
               <Flex data-testid={'navbar-menu-toggle'}><Hamburger color={brandLightest} /></Flex>

@@ -1,10 +1,13 @@
 export { callApi } from './ApiUtils'
+
 export { computeColumnWidth } from './DomUtils'
+
 export {
   getObjectKeys,
   getObjectKeysCount,
   greaterOrEquals
 } from './MiscUtils'
+
 export {
   getIconsPath,
   getStoreItemPath,
@@ -14,10 +17,12 @@ export {
   getStoreProductQs,
   findRoutePathDepth
 } from './PathUtils'
+
 export {
   formatServiceHour,
   extractIdFromSlug,
   generateRandString,
   slugify,
-  truncateText
+  truncateText,
+  uppercaseFirst
 } from './StringUtils'

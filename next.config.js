@@ -10,12 +10,15 @@ dotenvLoad();
 
 const {
 	NODE_ENV,
+	TEST_ENV,
 	NEXT_PUBLIC_DEVELOPMENT_API_URL,
 	NEXT_PUBLIC_DEVELOPMENT_HOST_URL,
 	NEXT_PUBLIC_PRODUCTION_API_URL,
 	NEXT_PUBLIC_PRODUCTION_HOST_URL
 } = process.env
 const env = NODE_ENV || 'development'
+
+const testEnv = TEST_ENV ? TEST_ENV.trim(): 'development'
 
 const envSpecifics = {
   development: {
@@ -26,14 +29,16 @@ const envSpecifics = {
     api: NEXT_PUBLIC_PRODUCTION_API_URL,
     host: NEXT_PUBLIC_PRODUCTION_HOST_URL,
   },
-  test: {
-    api: NEXT_PUBLIC_PRODUCTION_API_URL,
-    host: NEXT_PUBLIC_PRODUCTION_HOST_URL,
-  },
-}[env];
+};
+
+envSpecifics.test = {
+	api: envSpecifics[testEnv].api,
+	host: envSpecifics[testEnv].host,
+};
+
 
 const publicRuntimeConfig = {
-	envSpecifics
+	envSpecifics: envSpecifics[testEnv]
 };
 
 

@@ -36,5 +36,5 @@ jobs:
           name: Run Test and Coverage
           command: |
             ./cc-test-reporter before-build
-            npm test -- --coverage
+            TEST_ENV=production npm test -- --coverage
             ./cc-test-reporter after-build --exit-code $?

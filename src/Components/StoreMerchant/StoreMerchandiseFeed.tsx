@@ -4,16 +4,14 @@ import * as React from 'react';
 import { Box } from 'rebass';
 
 import { Grid, Button } from '@Components';
-import { theme } from '@Config';
 import { IStorePage } from '@Interfaces';
-import { StoreProductsList, StoresSkeletonList } from '@Generics';
+import { StoreProductsList } from '@Generics';
 import {
   getStoreItemPath,
-  getStoreProductThumbnailPath,
-  generateRandString
+  getStoreProductThumbnailPath
 } from '@Utilities'
 
-import { StoreProductItemSkeleton } from './StoreMerchantAtoms';
+import { RenderStoreProductsSkeleton } from './StoreMerchantAtoms';
 import { StoreMerchantProduct } from './StoreMerchantProduct'
 
 type StoreMerchandiseFeedProps = {
@@ -26,21 +24,6 @@ type StoreMerchandiseFeedProps = {
 
 type ExtraProps = {
   handleNextStoreMerchandiseFetch: () => any
-}
-
-function renderStoreSkeleton() {
-  return (
-    <Box data-testid={'store-merchandise-skeletal'}>
-      <StoresSkeletonList
-        items={generateRandString(5).split('')}
-        itemRenderer={(item:string, key:number) => (
-          <Box key={key} marginBottom={theme.space[1]}>
-            <StoreProductItemSkeleton />
-          </Box>
-        )}
-      />
-    </Box>
-  )
 }
 
 const RenderMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({
@@ -76,7 +59,7 @@ const RenderMerchandiseFeed:React.FC<StoreMerchandiseFeedProps> = ({
         }
       />
     }
-    {isFetchingStoreProducts && renderStoreSkeleton()}
+    {isFetchingStoreProducts && <RenderStoreProductsSkeleton />}
     </Box>
   )
 }
