@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import StoreEndpoints from './Store/endpoints';
+import SearchEndpoints from './Search/endpoints';
 
 /**
  * Resolves or rejects a Promise for an issued response status code.
@@ -41,5 +42,6 @@ export default {
   checkStatus,
   errorHandler,
   toJSON,
-  ...StoreEndpoints
+  ...StoreEndpoints,
+  ...SearchEndpoints
 }

@@ -137,14 +137,16 @@ export const StoreActions = {
 				.then(api.checkStatus)
 				.then(api.toJSON)
         .then(({ stores }:IStorePage.IStoresData) => {
-					const { entities } = normalize(stores, [storeSchema]);
+					if (stores.length) {
+						const { entities } = normalize(stores, [storeSchema]);
+						dispatch(EntityActions.Map({ ...entities }))
+					}
 					
 					setTimeout(() => {
 						dispatch(StoreActions.toggleStoresFetchingStatus(
 							getState().store.isFetchingStores
 						));
 					}, 1000)
-					dispatch(EntityActions.Map({ ...entities }))
 				})
         .catch((e:any) => api.errorHandler(dispatch, e))
 		}

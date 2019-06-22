@@ -28,6 +28,7 @@ export const SearchBarInput = styled('input')`
     width: inherit;
     border-radius: ${radius[2]};
     padding-left: ${searchBarAddonWidth}px;
+    padding-right: ${space[0]};
     --webkit-appearance: none;
     outline: none;
     border-width: 0;

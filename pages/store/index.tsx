@@ -88,12 +88,9 @@ const mapStateToProps = (state: IStore) => {
   }
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => (
-	{
-		Map: bindActionCreators(StoreActions.Map, dispatch),
-		fetchStoreProducts: bindActionCreators(StoreActions.fetchStoreProducts, dispatch),
-		getStore: bindActionCreators(StoreActions.getStore, dispatch)
-	}
-);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+	fetchStoreProducts: bindActionCreators(StoreActions.fetchStoreProducts, dispatch),
+	getStore: bindActionCreators(StoreActions.getStore, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoreProductsPage);

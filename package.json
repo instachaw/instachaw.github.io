@@ -1,6 +1,6 @@
 {
   "name": "delight-ui",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Delight UI is the front facing client for Instachaw.",
   "main": "app/server.js",
   "dependencies": {
@@ -64,7 +64,7 @@
   },
   "scripts": {
     "start:dev": "nodemon --watch app --watch app/server.js",
-    "build": "set NODE_ENV=production next build",
+    "build": "set NODE_ENV=production && next build",
     "start": "NODE_ENV=production node ./app/server.js",
     "test": "jest",
     "test:e2e": "jest /src/__tests__/e2e",
@@ -75,7 +75,7 @@
     "test:unit:coverage": "jest /src/__tests__/unit --coverage",
     "test:functional:coverage": "jest /src/__tests__/functional --coverage",
     "heroku-prebuild": "npm i --dev && NODE_ENV=production next build",
-    "export": "set NODE_ENV=production next export",
+    "export": "set NODE_ENV=production && next export",
     "analyze": "BUNDLE_ANALYZE=both npm run build",
     "release": "standard-version"
   },

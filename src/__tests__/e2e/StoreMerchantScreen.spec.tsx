@@ -1,10 +1,10 @@
 import { setupPuppeteer } from '../test-utils';
-import { wait } from 'react-testing-library';
+const { getDocument, queries, wait } = require('pptr-testing-library')
+import { storeUrl } from './'
 
-const { getDocument, queries } = require('pptr-testing-library')
 const { queryAllByTestId, getByTestId, getByText } = queries;
 
-const storeUrl = 'http://localhost:3000/store/genesis-choba-2';
+;
 const storeInfo = {
   title: 'Genesis, Choba',
   storeHours: '9 AM - 9 PM',
@@ -60,15 +60,18 @@ describe('Store Product Page', () => {
         // Store the number of merchant products loaded
         let storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
         const storeMerchantProductsCount = storeMerchantProducts.length;
+
+        await page.waitFor(4000)
   
         // Load more products...
-        const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);
-        await loadStoreBtn.click()
-  
+        const loadStoreBtn = await getByTestId($document, loadStoreBtnProductTestId);        
+        loadStoreBtn.click()
+
         // Expect new products to have been loaded
         await wait(async () => {
           storeMerchantProducts = await queryAllByTestId($document, storeProductTestId)
-          expect(storeMerchantProducts.length).toBeGreaterThan(storeMerchantProductsCount)
+
+          return expect(storeMerchantProducts.length).toBeGreaterThan(storeMerchantProductsCount)
         })
       })
   

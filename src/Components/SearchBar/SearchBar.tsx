@@ -11,11 +11,16 @@ import {
 import { Icon } from '@Components';
 import { theme } from '@Config';
 
-export const SearchBar:React.FC = () => {
+type SearchBarProps = {
+  inputRef: React.RefObject<HTMLInputElement>,
+  inputValue: string
+}
+
+export const SearchBar:React.FC<SearchBarProps> = ({ inputRef, inputValue }) => {
   return (
     <label style={{ width: '100%' }}>
       <SearchBarWrapper width={1}>
-        <SearchBarInput placeholder={'Find great meals...'} />
+        <SearchBarInput type="search" defaultValue={inputValue} ref={inputRef} placeholder={'Find great meals...'} />
         <SearchBarAddon>
           <Icon name="search" fill={theme.palette.grayscale[5]} />
         </SearchBarAddon>

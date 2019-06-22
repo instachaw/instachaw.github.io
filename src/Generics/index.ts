@@ -1,4 +1,5 @@
 export {
+  SearchResultsList,
   StoresList,
   StoresSkeletonList,
   StoreProductsList
