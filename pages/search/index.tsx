@@ -53,21 +53,12 @@ export class SearchPage extends React.Component<ISearchPage.IProps, ISearchPage.
 
 		return (
 			<>
-				<Head>
-					<title>Results for {uppercaseFirst(searchQuery)} | Instachaw</title>
-				</Head>
-
+				<Head><title>Results for {uppercaseFirst(searchQuery)} | Instachaw</title></Head>
         <Grid>
           <Grid.Row>
             <Grid.Col>
-              <Heading
-                margin={`${space[1]} 0`}
-                color={grayscale[2]}
-                fontSize={3}
-                data-testid={'search-screen-title'}
-              >{
-                `${isFetchingSearchResults ? 'Fetching': ''} Search Results for "${uppercaseFirst(searchQuery)}".`
-              }
+              <Heading data-testid={'search-screen-title'} margin={`${space[1]} 0`} color={grayscale[2]} fontSize={3}>
+              {`${isFetchingSearchResults ? 'Fetching': ''} Search Results for "${uppercaseFirst(searchQuery)}".`}
               </Heading>
               <SearchResultsFeed
                 isFetchingSearchResults={isFetchingSearchResults}
@@ -90,11 +81,8 @@ const mapStateToProps = (state: IStore) => {
   }
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => (
-	{
-    Map: bindActionCreators(SearchActions.Map, dispatch),
-    fetchSearchResults: bindActionCreators(SearchActions.fetchSearchResults, dispatch)
-	}
-);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchSearchResults: bindActionCreators(SearchActions.fetchSearchResults, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

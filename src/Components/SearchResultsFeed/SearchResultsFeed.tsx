@@ -49,14 +49,8 @@ const RenderSearchResultsFeed:React.FC<SearchResultsFeedProps> = ({
       <RenderStoreProductsSkeleton/> :
       <SearchResultsList
         items={searchResults}
-        itemRenderer={({
-            id,
-            store_id,
-            title,
-            description = '',
-            photo,
-            price
-          }: ISearchPage.ISearchResultData) => {
+        itemRenderer={(props: ISearchPage.ISearchResultData) => {
+            const { id, store_id, title, description = '', photo, price } = props;
             const store = stores[store_id];
 
             return (
