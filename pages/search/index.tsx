@@ -31,14 +31,14 @@ export class SearchPage extends React.Component<ISearchPage.IProps, ISearchPage.
     fetchSearchResults(q)
 
     router.events.on('beforeHistoryChange', (route:string) => {
-      const query = route.split('?q=');
+      const query = window.location.search.split('?q=')[1];
 
-      if (query[0] !== RouteConstants.SEARCH_ROUTE) return;
+      if (query !== this.state.searchQuery) return;
 
       this.setState({
-        searchQuery: query[1]
+        searchQuery: query
       })
-      fetchSearchResults(query[1])
+      fetchSearchResults(query)
     })
   }
 
