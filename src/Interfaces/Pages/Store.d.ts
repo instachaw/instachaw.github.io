@@ -23,7 +23,7 @@ declare module IStorePage {
 	}
 	
 	export interface IDispatchProps {
-		Map(payload: Actions.IMapPayload): Actions.IMapResponse;
+		Map?(payload: Actions.IMapPayload): Actions.IMapResponse;
 		fetchStoreProducts(storeId:number, pageIndex?:number): any,
 		getStore(id:number): Promise,
  	}

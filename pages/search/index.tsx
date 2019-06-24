@@ -25,8 +25,8 @@ export class SearchPage extends React.Component<ISearchPage.IProps, ISearchPage.
 
   componentDidMount() {
     const { fetchSearchResults, router } = this.props;
-    const { q } = router.query;
-
+    const q = window.location.search.split('?q=')[1];
+    
     this.setState({ searchQuery: q });
     fetchSearchResults(q)
 
