@@ -23,7 +23,7 @@ export const setupPuppeteer = async (url:string, callback:any) => {
       if (!responseEventOccurred) {
         resolve(true); 
       } else {
-        setTimeout(function(){ resolve(true); }, 500000);
+        setTimeout(function(){ resolve(true); }, 50000);
       }
 
       page.removeListener('response', responseHandler);
@@ -31,7 +31,7 @@ export const setupPuppeteer = async (url:string, callback:any) => {
   });
 
   await page.goto(url, {
-    timeout: 0,
+    timeout: 120000,
     waitUntil: 'networkidle0'
   });
 
