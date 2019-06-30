@@ -13,11 +13,9 @@ describe('Stores Page', () => {
       const $document = await getDocument(page);
       await page.waitForSelector(storesSelector);
 
-      await wait(async () => {
-        const storesFeedItems = await queryAllByTestId($document, 'stores-feed-item')
+      const storesFeedItems = await queryAllByTestId($document, 'stores-feed-item')
 
-        expect(storesFeedItems.length).toBeGreaterThan(1)
-      })
+      expect(storesFeedItems.length).toBeGreaterThan(1)
 
       done()
     })
