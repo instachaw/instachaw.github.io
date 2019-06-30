@@ -16,8 +16,8 @@ describe('Stores Page', () => {
       const storesFeedItems = await queryAllByTestId($document, 'stores-feed-item')
 
       expect(storesFeedItems.length).toBeGreaterThan(1)
-
-      done()
     })
+    
+    done()
   }, 160000);
 });

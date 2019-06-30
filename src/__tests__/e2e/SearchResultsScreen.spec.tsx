@@ -12,11 +12,9 @@ describe('Search Results Page', () => {
       const $document = await getDocument(page);
       await page.waitForSelector(searchResultSelector);
 
-      await wait(async () => {
-        const searchResults = await queryAllByTestId($document, 'search-result')
+      const searchResults = await queryAllByTestId($document, 'search-result')
 
-        expect(searchResults.length).toBeGreaterThan(1)
-      })
+      expect(searchResults.length).toBeGreaterThan(1)
 
       done()
     })

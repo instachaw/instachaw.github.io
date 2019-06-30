@@ -25,9 +25,9 @@ describe('Store Product Page', () => {
 
         expect(storeTitleNode).toBeDefined()
         expect(storeHoursNode).toBeDefined()
-
-        done()
       })
+
+      done()
     }, 1600000);
   })
 
