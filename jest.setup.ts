@@ -5,4 +5,4 @@ import { publicRuntimeConfig } from './next.config'
 
 setConfig({ publicRuntimeConfig })
 
-jest.setTimeout(30000)
+jest.setTimeout(500000)
