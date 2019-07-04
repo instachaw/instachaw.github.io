@@ -15,7 +15,7 @@ describe('Store Product Page', () => {
     test('Displays correct information for the store', async (done) => {
       await setupPuppeteer(storeUrl, async (page:any) => {
         const storeBriefTestId = 'store-merchant-brief';
-        const storeBriefSelector = `[data-testid="${storeBriefTestId}"]`;
+        const storeBriefSelector = `[data-testid=${storeBriefTestId}]`;
   
         await page.waitForSelector(storeBriefSelector);  
         const $document = await getDocument(page);
@@ -25,9 +25,9 @@ describe('Store Product Page', () => {
 
         expect(storeTitleNode).toBeDefined()
         expect(storeHoursNode).toBeDefined()
-
-        done()
       })
+
+      done()
     }, 1600000);
   })
 

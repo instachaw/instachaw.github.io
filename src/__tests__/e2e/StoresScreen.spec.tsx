@@ -8,18 +8,16 @@ const { queryAllByTestId } = queries;
 describe('Stores Page', () => {  
   test('Contains more than one store', async (done) => {
     await setupPuppeteer(storesUrl, async (page:any) => {
-      const storesSelector = '[data-testid="stores-feed-item"]';
+      const storesSelector = '[data-testid=stores-feed-item]';
 
       const $document = await getDocument(page);
       await page.waitForSelector(storesSelector);
 
-      await wait(async () => {
-        const storesFeedItems = await queryAllByTestId($document, 'stores-feed-item')
+      const storesFeedItems = await queryAllByTestId($document, 'stores-feed-item')
 
-        expect(storesFeedItems.length).toBeGreaterThan(1)
-      })
-
-      done()
+      expect(storesFeedItems.length).toBeGreaterThan(1)
     })
+    
+    done()
   }, 160000);
 });
